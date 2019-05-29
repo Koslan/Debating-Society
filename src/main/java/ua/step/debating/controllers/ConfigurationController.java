@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import ua.step.debating.repositories.ConfigurationRepository;
 
-/*
- * 
- */
-
 @Controller
 public class ConfigurationController {
 
