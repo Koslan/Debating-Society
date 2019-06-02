@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +19,12 @@ public class Vote {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	private Date estimateDate; 
+	private Date estimateDate;
 	
-	@OneToOne
+	@ManyToOne
 	private User estimater;
 	
-	@OneToOne
+	@ManyToOne
 	private User favorite;
 	
 	public Vote() {}
