@@ -2,17 +2,27 @@ package ua.step.debating.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Theme {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Integer id;
 	private String name;
 	@ManyToOne
 	private List<Theme> subthemes; // подтемы
+	@OneToOne
 	private User creator;
 	@OneToMany
 	private List<Lobby>  listOfDebats;  //Список  дебатов
