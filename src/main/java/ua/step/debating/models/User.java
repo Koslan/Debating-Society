@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -23,8 +24,10 @@ public class User {
 	private String password; 
 	private String email;
 	//private UserStatistics  statistics;
+	@OneToOne
+	private LobbyStatistics lobbyStatistics;
 	//private List<Role> roles;
 	@ManyToMany
-	private List<Lobby> lobbies; 
+	private List<Lobby> lobbies;
 
 }
