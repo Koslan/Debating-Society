@@ -1,5 +1,6 @@
 package ua.step.debating.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,15 +34,13 @@ public class User {
 	@JoinTable(name = "users_has_roles", joinColumns = {
 			@JoinColumn(name = "users_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "roles_id", nullable = false, updatable = false) })
-
+    private List<Role> roles = new ArrayList<>();
 	@OneToMany
 	private List<Message> messages;
 	@OneToOne
 	private UserStatistics statistics;
 	@OneToOne
 	private LobbyStatistics lobbyStatistics;
-	@ManyToMany
-	private List<Role> roles;
 	@ManyToMany
 	private List<Lobby> lobbies;
 
@@ -77,13 +76,6 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
 
 	public List<Message> getMessages() {
 		return messages;
@@ -107,6 +99,22 @@ public class User {
 
 	public void setLobbies(List<Lobby> lobbies) {
 		this.lobbies = lobbies;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public UserStatistics getStatistics() {
+		return statistics;
+	}
+
+	public void setStatistics(UserStatistics statistics) {
+		this.statistics = statistics;
 	}
 
 }

@@ -36,9 +36,9 @@ public class Lobby {
 	
 	@ManyToMany
 	private List<User> spectators;
-	@ManyToOne
+	@OneToMany
 	private List<Message> firstSideMessages;
-	@ManyToOne
+	@OneToMany
 	private List<Message> secondSideMessages;
 	private String ImageURL;
 	
