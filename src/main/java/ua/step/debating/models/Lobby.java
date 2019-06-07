@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +22,8 @@ public class Lobby {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String name;
-	// private Theme theme;
+	@OneToOne
+	private Theme theme;
 	private Date createDate;
 	private String position1;
 	private String position2;
@@ -33,8 +36,10 @@ public class Lobby {
 	
 	@ManyToMany
 	private List<User> spectators;
-	//private List<Message> firstSideMessages;
-	//private List<Message> secondSideMessages;
+	@ManyToOne
+	private List<Message> firstSideMessages;
+	@ManyToOne
+	private List<Message> secondSideMessages;
 	private String ImageURL;
 	
 	@OneToOne
@@ -43,6 +48,126 @@ public class Lobby {
 	
 	@ManyToMany
 	private List<User> winners;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Theme getTheme() {
+		return theme;
+	}
+
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getPosition1() {
+		return position1;
+	}
+
+	public void setPosition1(String position1) {
+		this.position1 = position1;
+	}
+
+	public String getPosition2() {
+		return position2;
+	}
+
+	public void setPosition2(String position2) {
+		this.position2 = position2;
+	}
+
+	public List<User> getFirstSide() {
+		return firstSide;
+	}
+
+	public void setFirstSide(List<User> firstSide) {
+		this.firstSide = firstSide;
+	}
+
+	public List<User> getSecondSide() {
+		return secondSide;
+	}
+
+	public void setSecondSide(List<User> secondSide) {
+		this.secondSide = secondSide;
+	}
+
+	public List<User> getSpectators() {
+		return spectators;
+	}
+
+	public void setSpectators(List<User> spectators) {
+		this.spectators = spectators;
+	}
+
+	public List<Message> getFirstSideMessages() {
+		return firstSideMessages;
+	}
+
+	public void setFirstSideMessages(List<Message> firstSideMessages) {
+		this.firstSideMessages = firstSideMessages;
+	}
+
+	public List<Message> getSecondSideMessages() {
+		return secondSideMessages;
+	}
+
+	public void setSecondSideMessages(List<Message> secondSideMessages) {
+		this.secondSideMessages = secondSideMessages;
+	}
+
+	public String getImageURL() {
+		return ImageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		ImageURL = imageURL;
+	}
+
+	public Configuration getConfig() {
+		return config;
+	}
+
+	public void setConfig(Configuration config) {
+		this.config = config;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public List<User> getWinners() {
+		return winners;
+	}
+
+	public void setWinners(List<User> winners) {
+		this.winners = winners;
+	}
 }
 
 
