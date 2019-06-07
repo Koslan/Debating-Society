@@ -24,7 +24,7 @@ public class Vote {
 	private User estimater;
 	
 	@ManyToOne
-	private User favorite;
+	private User chosen;
 	
 	public Vote() {}
 
@@ -53,11 +53,11 @@ public class Vote {
 	}
 
 	public User getFavorite() {
-		return favorite;
+		return chosen;
 	}
 
 	public void setFavorite(User favorite) {
-		this.favorite = favorite;
+		this.chosen = favorite;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Vote {
 		int result = 1;
 		result = prime * result + ((estimateDate == null) ? 0 : estimateDate.hashCode());
 		result = prime * result + ((estimater == null) ? 0 : estimater.hashCode());
-		result = prime * result + ((favorite == null) ? 0 : favorite.hashCode());
+		result = prime * result + ((chosen == null) ? 0 : chosen.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -90,10 +90,10 @@ public class Vote {
 				return false;
 		} else if (!estimater.equals(other.estimater))
 			return false;
-		if (favorite == null) {
-			if (other.favorite != null)
+		if (chosen == null) {
+			if (other.chosen != null)
 				return false;
-		} else if (!favorite.equals(other.favorite))
+		} else if (!chosen.equals(other.chosen))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -105,8 +105,8 @@ public class Vote {
 
 	@Override
 	public String toString() {
-		return "Vote [id=" + id + ", estimateDate=" + estimateDate + ", estimater=" + estimater + ", favorite="
-				+ favorite + "]";
+		return "Vote [id=" + id + ", estimateDate=" + estimateDate + ", estimater=" + estimater + ", chosen="
+				+ chosen + "]";
 	}
 	
 }
