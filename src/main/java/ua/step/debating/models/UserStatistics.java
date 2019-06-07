@@ -2,18 +2,38 @@ package ua.step.debating.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "UserStatistics")
 public class UserStatistics {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Integer id;
 	
 	private Integer reputation;
 	
 	private Integer activity;
 	
+	@ManyToMany
 	private List<User>  subscriptions; //подпиcки;
 	
+	@ManyToMany
 	private List<User>  subscribers; // подписчики;
 	
+	@ManyToMany
 	private List<Theme> topicSubscriptions; //подписки на темы;
 	
+	@OneToMany
 	private List<Theme> listOfUserTopics; // список тем которые пользователь создал;
 	
 	UserStatistics() {}

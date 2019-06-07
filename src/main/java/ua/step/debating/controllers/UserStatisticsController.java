@@ -14,7 +14,7 @@ public class UserStatisticsController {
 	private UserStatisticsRepository repoUS;
 
 	@GetMapping("/userStatistics")
-	public String getConfigurations(Model model) {
+	public String getUserStatistics(Model model) {
 		model.addAttribute("userStatistics", repoUS.findAll());
 		return "userStatistics";
 	}

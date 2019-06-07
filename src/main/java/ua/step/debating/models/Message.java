@@ -25,13 +25,10 @@ public class Message {
 	@ManyToOne
 	private Lobby Lobby;
 	private Date date;
-	@OneToMany
+	@ManyToOne
 	private User author;
 	@ManyToMany
 	private List<User> listOfLikes;
-
-
-
 	
 	public String getText() {
 		return text;

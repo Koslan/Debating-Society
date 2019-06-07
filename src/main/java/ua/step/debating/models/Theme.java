@@ -20,7 +20,7 @@ public class Theme {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String name;
-	@ManyToOne
+	@OneToMany
 	private List<Theme> subthemes; // подтемы
 	@OneToOne
 	private User creator;
