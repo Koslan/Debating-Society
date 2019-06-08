@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.container {
+
+	background-color: #ccecff;
+
+}
+
+li {
+
+	margin-top: 10px;
+
+}
+
+li a, li li {
+
+	font-size: 15px;
+	color: #2d87bc;
+		
+}
