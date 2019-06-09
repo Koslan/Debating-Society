@@ -21,7 +21,8 @@ public class ThemeController {
 	@GetMapping("/theme")
 	public String getTheme(Model model) {
 		model.addAttribute("theme", repoT.findAll());
-		return "theme";
+		model.addAttribute("contentPage", "theme");
+		return "index";
 	}
 	
 	@GetMapping("/theme/add")

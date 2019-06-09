@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.container {
+	
+		 display: flex;
+		 justify-content: center;
+	
+}
+
+.row {
+
+		padding: 5px;
+		background-color: #ccecff;
+		display: inline-flex;
+		margin: 10px;
+
+}
+
+img {
+	
+	margin-right: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.name {
+	
+	text-align: center;
+	color: #2d87bc;
+	
+}
+
+.positions {
+	
+	display: flex;
+    justify-content: space-around;
+	
+}
+
+.positions p {
+	
+	margin: 0 15px;
+	
+}

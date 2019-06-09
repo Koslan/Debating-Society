@@ -15,7 +15,6 @@ public class MainController {
 	@GetMapping("/")
 	private String getIndex(Model model) {
 		model.addAttribute("spheres", repoS.findAll());
-		model.addAttribute("contentPage", "fragments/header");
 		model.addAttribute("contentPage", "spheres");
 		return "index";
 	}

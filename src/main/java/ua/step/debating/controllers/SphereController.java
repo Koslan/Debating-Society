@@ -16,7 +16,8 @@ public class SphereController {
 	@GetMapping("/spheres")
 	public String getSpheres(Model model) {
 		model.addAttribute("spheres", repoS.findAll());
-		return "spheres";
+		model.addAttribute("contentPage", "spheres");
+		return "index";
 	}
 	
 }
