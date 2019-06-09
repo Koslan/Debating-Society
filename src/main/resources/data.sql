@@ -22,8 +22,8 @@ INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) 
 INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (4, 'sulmatUUl@bk.ru', 'magIvoin2001', '456789', 4, 4);
 INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (5, 'ZarinM@inbox.ru', 'CARstark', '567890', 5, 5);
 
-INSERT INTO Theme(id, name, creator_id) VALUES (1, 'Java vs C++', 1);
-INSERT INTO Theme(id, name, creator_id) VALUES (2, 'Крым наш или не наш?', 2);
-INSERT INTO Theme(id, name, creator_id) VALUES (3, 'Android VS Apple', 3);
-INSERT INTO Theme(id, name, creator_id) VALUES (4, 'Либеры против Консерв', 4);
-INSERT INTO Theme(id, name, creator_id) VALUES (5, 'Найки и Adidas!!!', 5);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id) VALUES (1, 'Java', 'Java vs C++', 'C++(Best of the Best)', 1);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id) VALUES (2, 'Крым русский', 'Крым наш или не наш?', 'Украина', 2);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id) VALUES (3, 'Android', 'Android VS Apple', 'Apple', 3);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id) VALUES (4, 'Прогрессивный либерализм', 'Либеры против Консерв', 'Тупые консерваторы', 4);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id) VALUES (5, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5);

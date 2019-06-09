@@ -20,27 +20,56 @@ public class Theme {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String name;
-	@OneToMany
-	private List<Theme> subthemes; // подтемы
 	@OneToOne
 	private User creator;
+	
+	private String firstPosition;
+	private String secondPosition;
+	
 	@OneToMany
 	private List<Lobby>  listOfDebats;  //Список  дебатов
 	@ManyToMany
 	private List<User>  subscribers;
 	
+	private String ImageURL;
 	
+	public Theme() {}
+	
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public String getFirstPosition() {
+		return firstPosition;
+	}
+	public void setFirstPosition(String firstPosition) {
+		this.firstPosition = firstPosition;
+	}
+	public String getSecondPosition() {
+		return secondPosition;
+	}
+	public void setSecondPosition(String secondPosition) {
+		this.secondPosition = secondPosition;
+	}
+	public String getImageURL() {
+		return ImageURL;
+	}
+	public void setImageURL(String imageURL) {
+		ImageURL = imageURL;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public List<Theme> getSubthemes() {
-		return subthemes;
-	}
-	public void setSubthemes(List<Theme> subthemes) {
-		this.subthemes = subthemes;
 	}
 	public User getCreator() {
 		return creator;
