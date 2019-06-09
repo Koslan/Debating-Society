@@ -21,33 +21,47 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-<style type="text/css"></style>
+<style type="text/css">
+</style>
 </head>
 <body>
-
 	<nav class="navbar navbar-expand-sm rounded border shadow-sm"
 		th:fragment="header(search)">
 		<a class="navbar-brand" href="/"><img
 			th:src="@{'/images/logo.jpg'}" width="60"> </a>
 
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			<li class="nav-item"><button class="btn btn-primary"
-					onclick="openNav()">></button></li>
-			<li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
 			<li class="nav-item"><a class="nav-link" href="/news">Лента</a></li>
-			<li class="nav-item"><a class="nav-link" href="/subscription">Подписки</a></li>
 			<li class="nav-item"><a class="nav-link" href="/statistics">Статистика</a></li>
 			<li class="nav-item"><a class="nav-link" href="/theme">Темы</a></li>
-
 		</ul>
-		<div>
-			<a class="navbar-brand" href="/profile"><img
-				class="rounded-circle" src="/images/img_avatar.jpg" alt="Person"
-				width="60" height="60"></a>
+
+		<a class="nav-link btn btn-info mt-3 mr-3" href="/createDebate">Создать
+			Дебаты</a> <a class="nav-link btn btn-info mt-3 mr-3"
+			href="/createDiscussion">Создать Дискуссию</a>
+
+		<!-- Профиль -->
+		<div class="btn-group rounded-circle mt-3 mr-3">
+			<img class="rounded-circle" src="/images/img_avatar.jpg" alt="Person"
+				width="60" height="60" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+				<!-- Выпадающее меню -->
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href="#"> <img class="rounded-circle"
+					src="/images/img_avatar.jpg" alt="Person" width="60" height="60">
+				</a> <span class="dropdown-item-text">Константин</span> <span
+					class="dropdown-item-text">Рейтинг: 34</span>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="/profile">Профиль</a> <a
+					class="dropdown-item" href="/subscription">Подписчики</a> <a
+					class="dropdown-item" href="/fallowers">Подписки</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Настройки</a>
+				<a class="dropdown-item" href="#">Выйти</a>
+			</div>
 		</div>
+		<!-- Конец Профиля -->
 	</nav>
-
-
 </body>
 </html>
 

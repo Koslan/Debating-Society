@@ -14,7 +14,7 @@ public class UserController {
 	private UserRepository repoU;
 
 	@GetMapping("/users")
-	public String getConfigurations(Model model) {
+	public String getUsers(Model model) {
 		model.addAttribute("users", repoU.findAll());
 		return "users";
 	}

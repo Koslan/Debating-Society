@@ -30,7 +30,6 @@
 
 <body>
 	<div th:insert="fragments/header :: header(~{ :: .spells})">Header</div>
-	<div th:insert="fragments/slideMenu :: panel">Panel</div>
 	<div th:replace="${contentPage} :: content">Content</div>
 </body>
 </html>

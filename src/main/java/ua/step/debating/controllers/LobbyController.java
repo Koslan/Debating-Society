@@ -14,7 +14,7 @@ public class LobbyController {
 	private LobbyRepository repoL;
 
 	@GetMapping("/lobbies")
-	public String getConfigurations(Model model) {
+	public String getLobbies(Model model) {
 		model.addAttribute("lobbies", repoL.findAll());
 		return "lobbies";
 	}
