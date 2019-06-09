@@ -11,6 +11,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Dmitrij
+ * 
+ * Description: Класс Sphere описывает предметную область (сферу), т.е. элемент каталога, в котором
+ *              размещаются соответствующие темы.
+ *
+ */
+
 @Entity
 @Table(name = "Sphere")
 public class Sphere {
@@ -21,11 +30,8 @@ public class Sphere {
 	
 	private String name;
 	
-	@ManyToMany
-	private List<Sphere> subspheres;
-	
 	@OneToMany
-	private List<Theme> themes;
+	private List<Theme> themes; // Темы, которые относятся к этой сфере
 	
 	public Sphere() {}
 
@@ -43,14 +49,6 @@ public class Sphere {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Sphere> getSubspheres() {
-		return subspheres;
-	}
-
-	public void setSubspheres(List<Sphere> subspheres) {
-		this.subspheres = subspheres;
 	}
 
 	public List<Theme> getThemes() {

@@ -25,8 +25,6 @@ public class Lobby {
 	@OneToOne
 	private Theme theme;
 	private Date createDate;
-	private String position1;
-	private String position2;
 	
 	@ManyToMany
 	private List<User> firstSide;
@@ -40,7 +38,6 @@ public class Lobby {
 	private List<Message> firstSideMessages;
 	@OneToMany
 	private List<Message> secondSideMessages;
-	private String ImageURL;
 	
 	@OneToOne
 	private Configuration config;
@@ -81,22 +78,6 @@ public class Lobby {
 		this.createDate = createDate;
 	}
 
-	public String getPosition1() {
-		return position1;
-	}
-
-	public void setPosition1(String position1) {
-		this.position1 = position1;
-	}
-
-	public String getPosition2() {
-		return position2;
-	}
-
-	public void setPosition2(String position2) {
-		this.position2 = position2;
-	}
-
 	public List<User> getFirstSide() {
 		return firstSide;
 	}
@@ -135,14 +116,6 @@ public class Lobby {
 
 	public void setSecondSideMessages(List<Message> secondSideMessages) {
 		this.secondSideMessages = secondSideMessages;
-	}
-
-	public String getImageURL() {
-		return ImageURL;
-	}
-
-	public void setImageURL(String imageURL) {
-		ImageURL = imageURL;
 	}
 
 	public Configuration getConfig() {
