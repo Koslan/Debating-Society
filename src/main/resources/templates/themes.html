@@ -30,7 +30,7 @@
 	
 	<link rel="stylesheet" href="/css/themes.css">
 		
-		<div class="container" th:each="theme : ${theme}">
+		<div class="container" th:each="themes : ${themes}">
 		
   			<div class="row">
 
@@ -38,13 +38,13 @@
 
     			<div>
 
-    				<p class="h3 name" th:text="${theme.name}"></p>
+    				<p class="h3 name" th:text="${themes.name}"></p>
     			
 						<div class="positions h4">
-    					<p th:text="${theme.firstPosition}"></p><p th:text="${theme.secondPosition}"></p>
+    					<p th:text="${themes.firstPosition}"></p><p th:text="${themes.secondPosition}"></p>
     				</div>
 
-    				<p>Создатель: <span class="h5" th:text="${theme.creator.name}"></span></p>
+    				<p>Создатель: <span class="h5" th:text="${themes.creator.name}"></span></p>
 
     				<p>Количество проводимых дебатов: <span class="h5">1</span></p>
     				<p>Количество проводимых дискуссий: <span class="h5">3</span></p>

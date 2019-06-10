@@ -18,33 +18,33 @@ public class ThemeController {
 	@Autowired
 	private ThemeRepository repoT;
 
-	@GetMapping("/theme")
+	@GetMapping("/themes")
 	public String getTheme(Model model) {
-		model.addAttribute("theme", repoT.findAll());
-		model.addAttribute("contentPage", "theme");
+		model.addAttribute("themes", repoT.findAll());
+		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
 	
-	@GetMapping("/theme/add")
+	@GetMapping("/themes/add")
 	private String getAddPublisher(@ModelAttribute Theme theme, Model model) {
-		model.addAttribute("contentPage", "addTheme");
+		model.addAttribute("contentPage", "addThemes");
 		return "index";
 	}
 
-	@PostMapping("/theme/add")
+	@PostMapping("/themes/add")
 	private String addTheme(@ModelAttribute Theme theme) {
 		boolean isEmty = true;
-		List<Theme> publishers = repoT.findAll();
-		for (int i = 0; i < publishers.size(); i++) {
-			if (publishers.get(i).getName().equals(theme.getName())) {
+		List<Theme> themes = repoT.findAll();
+		for (int i = 0; i < themes.size(); i++) {
+			if (themes.get(i).getName().equals(theme.getName())) {
 				isEmty = false;
 			}
 		}
 		if (isEmty) {
 			repoT.saveAndFlush(theme);
-			return "redirect:/theme";
+			return "redirect:/themes";
 		} else {
-			return "redirect:/theme/add";
+			return "redirect:/themes/add";
 		}
 	}
 	
