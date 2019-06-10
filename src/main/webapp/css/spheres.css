@@ -12,7 +12,7 @@ li {
 
 }
 
-li a, li li {
+.h5 a, .h5 li {
 
 	font-size: 15px;
 	color: #2d87bc;

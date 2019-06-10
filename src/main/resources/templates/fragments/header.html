@@ -33,7 +33,7 @@
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			<li class="nav-item"><a class="nav-link" href="/news">Лента</a></li>
 			<li class="nav-item"><a class="nav-link" href="/statistics">Статистика</a></li>
-			<li class="nav-item"><a class="nav-link" href="/theme">Темы</a></li>
+			<li class="nav-item"><a class="nav-link" href="/spheres">Сферы</a></li>
 		</ul>
 
 		<a class="nav-link btn btn-info mt-3 mr-3" href="/createDebate">Создать
@@ -41,12 +41,13 @@
 			href="/createDiscussion">Создать Дискуссию</a>
 
 		<!-- Профиль -->
-		<div class="btn-group rounded-circle mt-3 mr-3">
-			<img class="rounded-circle" src="/images/img_avatar.jpg" alt="Person"
-				width="60" height="60" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">
+		<div class="btn-group rounded-circle mt-3 mr-3 dropdown">
+			<a href="#" id="imageDropdown" data-toggle="collapse" data-target="#navbar">
+				<img class="rounded-circle" src="/images/img_avatar.jpg" alt="Person"
+				width="60" height="60">
+			</a>
 				<!-- Выпадающее меню -->
-			<div class="dropdown-menu dropdown-menu-right">
+			<div id="navbar" class="dropdown-menu dropdown-menu-right">
 				<a class="dropdown-item" href="#"> <img class="rounded-circle"
 					src="/images/img_avatar.jpg" alt="Person" width="60" height="60">
 				</a> <span class="dropdown-item-text">Константин</span> <span
