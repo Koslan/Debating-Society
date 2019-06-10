@@ -15,6 +15,11 @@ import ua.step.debating.repositories.ThemeRepository;
 @Controller
 public class ThemeController {
 
+	/*
+	 * 
+	 * @author Bartalev
+	 *
+	 */	
 	@Autowired
 	private ThemeRepository repoT;
 
@@ -26,21 +31,21 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/themes/add")
-	private String getAddPublisher(@ModelAttribute Theme theme, Model model) {
+	private String getAddPublisher(Model model) {
 		model.addAttribute("contentPage", "addThemes");
 		return "index";
 	}
 
 	@PostMapping("/themes/add")
 	private String addTheme(@ModelAttribute Theme theme) {
-		boolean isEmty = true;
+		boolean isEmpty = true;
 		List<Theme> themes = repoT.findAll();
-		for (int i = 0; i < themes.size(); i++) {
+		for (int i = 0; i < themes.size(); i++) {//идет перебор всех тем из списка тем
 			if (themes.get(i).getName().equals(theme.getName())) {
-				isEmty = false;
+				isEmpty = false;
 			}
 		}
-		if (isEmty) {
+		if (isEmpty) {
 			repoT.saveAndFlush(theme);
 			return "redirect:/themes";
 		} else {
