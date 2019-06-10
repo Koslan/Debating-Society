@@ -31,16 +31,18 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/themes/add")
-	private String getAddPublisher(Model model) {
+	private String getAddTheme(Model model) {
 		model.addAttribute("contentPage", "addThemes");
 		return "index";
 	}
 
-	@PostMapping("/themes/add")
+	@PostMapping("/themes/add") //добавление несуществующей темы, если она уже есть идет перенаправление
+								//на новый ввод темы, иначе она добавляется и идет обновление текущей
+								//страницы themes
 	private String addTheme(@ModelAttribute Theme theme) {
 		boolean isEmpty = true;
 		List<Theme> themes = repoT.findAll();
-		for (int i = 0; i < themes.size(); i++) {//идет перебор всех тем из списка тем
+		for (int i = 0; i < themes.size(); i++) {
 			if (themes.get(i).getName().equals(theme.getName())) {
 				isEmpty = false;
 			}
