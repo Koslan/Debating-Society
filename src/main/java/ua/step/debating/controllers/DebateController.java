@@ -41,8 +41,8 @@ public class DebateController {
 	}*/
 	@GetMapping("/createDebate")
 	public String getSphere(Model model) {
-		model.addAttribute("sphere", sphereRepo.findAll());
-		model.addAttribute("contentPage", "sphere");
+		model.addAttribute("spheres", sphereRepo.findAll());
+		model.addAttribute("contentPage", "spheres");
 		return "index";
 	}
 }
