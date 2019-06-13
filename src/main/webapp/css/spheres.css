@@ -18,3 +18,10 @@ li a, li li {
 	color: #2d87bc;
 		
 }
+
+h4 a, h4 li {
+
+	font-size: 20px;
+	color: #000;
+		
+}
