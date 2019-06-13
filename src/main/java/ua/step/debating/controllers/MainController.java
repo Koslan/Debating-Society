@@ -18,4 +18,11 @@ public class MainController {
 		model.addAttribute("contentPage", "spheres");
 		return "index";
 	}
+
+	@GetMapping("/inDeveloping")
+	private String getInDevelopingMessage(Model model) {
+		model.addAttribute("contentPage", "inDeveloping");
+		return "index";
+	}
+
 }
