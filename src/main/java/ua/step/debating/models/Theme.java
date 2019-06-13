@@ -11,8 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Theme")
 public class Theme {
 
 	@Id
@@ -30,8 +32,10 @@ public class Theme {
 	private List<Lobby>  listOfDebats;  //Список  дебатов
 	@ManyToMany
 	private List<User>  subscribers;
+	@ManyToOne
+	private Sphere sphere;
 	
-	private String ImageURL;
+	private String backgroundImage;
 	
 	public Theme() {}
 	
@@ -39,13 +43,9 @@ public class Theme {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getFirstPosition() {
 		return firstPosition;
@@ -59,11 +59,11 @@ public class Theme {
 	public void setSecondPosition(String secondPosition) {
 		this.secondPosition = secondPosition;
 	}
-	public String getImageURL() {
-		return ImageURL;
+	public String getBackgroundImage() {
+		return backgroundImage;
 	}
-	public void setImageURL(String imageURL) {
-		ImageURL = imageURL;
+	public void setBackgroundImage(String imageURL) {
+		backgroundImage = imageURL;
 	}
 	public String getName() {
 		return name;

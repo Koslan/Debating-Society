@@ -1,4 +1,8 @@
 @charset "UTF-8";
+{
+	display: inline-block;
+	column-break-inside: avoid;
+}
 
 .container {
 
@@ -15,6 +19,23 @@ li {
 .h5 a, .h5 li {
 
 	font-size: 15px;
-	color: #2d87bc;
+	color: #000;
 		
+}
+
+.h6 a, .h6 a {
+
+	font-size: 15px;
+	color:#007bff;
+			
+}
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
 }

@@ -8,16 +8,16 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
-	
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 	crossorigin="anonymous"></script>
-	
+
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -25,79 +25,32 @@
 
 </head>
 <body>
+	<div class="card-columns">
+		<div class="card">
+			<div style="height: 900px" th:fragment="content">
+				<link rel="stylesheet" href="/css/spheres.css">
+				<div class="container">
+					<div class="row">
 
-	<div style="height: 900px" th:fragment="content">
-	
-		<link rel="stylesheet" href="/css/spheres.css">
-		
-		<div class="container">
-		
-  			<div class="row">
-
-    			<div class="col">
-    				
 						<ul>
-						
-							<li class="h5">Политика
-								<ul>
-									<li><a href="/themes">Государственный строй</a></li>
-									<li><a href="/themes">Политические режимы</a></li>
-									<li><a href="/themes">Риторика</a></li>
-									<li><a href="/themes">Либералы и консерваторы</a></li>
+							<li th:if="${sphere.id < 10}" class="h5"
+								th:each="sphere : ${spheres}">
+								<div class="col-sm-12">
+									<div class="card-body">
+										<a th:href="@{'/spheres/'+${sphere.id}}"
+											th:text="${sphere.name}"> </a>
+									</div>
+								</div>
+								<ul class="h6" th:each="child : ${sphere.children}">
+									<a th:href="@{'/themes'}" th:text="${child.name}"> </a>
 								</ul>
 							</li>
-
-							<li class="h5">Техника
-								<ul>
-									<li><a href="/themes">Инновации</a></li>
-								</ul>
-							</li>
-
-						</ul>
-
-    			</div>
-
-    			<div class="col">
-    				
-						<ul>
-						
-							<li class="h5">Творчество
-								<ul>
-									<li><a href="/themes">Современное искусство</a></li>
-									<li><a href="/themes">Художественные направления</a></li>
-									<li><a href="/themes">Цензура</a></li>
-								</ul>
-							</li>
-
-						</ul>
-
-    			</div>
-
-    			<div class="col">
-    				
-						<ul>
-						
-							<li class="h5">Медиа
-								<ul>
-									<li><a href="/themes">СМИ</a></li>
-									<li><a href="/themes">Пропаганда</a></li>
-								</ul>
-							</li>
-							<li class="h5">Образование
-								<ul>
-									<li><a href="/themes">Кризис средней специальности</a></li>
-								</ul>
-							</li>
-							<li class="h5">Другое</li>
-
-						</ul>
-
-    			</div>
-
-  			</div>
-  			
+					</div>
+					
+				</div>
+			</div>
 		</div>
-		
 	</div>
+
 </body>
 </html>
