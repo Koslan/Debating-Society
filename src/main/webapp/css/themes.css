@@ -1,17 +1,15 @@
 @charset "UTF-8";
 
-.container {
+.card-columns {
 	
-		 display: flex;
-		 justify-content: center;
+	padding-right: 20px;
 	
 }
 
-.row {
+.card {
 
 		padding: 5px;
 		background-color: #ccecff;
-		display: inline-flex;
 		margin: 10px;
 
 }
