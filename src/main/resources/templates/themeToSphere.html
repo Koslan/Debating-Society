@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container  mt-5" th:fragment="content">
+		<h2>Темы</h2>
+		<ul class="list-group mt-3">
+			<div class="list-group-item mb-1" th:each="theme : ${theme}">
+				<div>
+					<a th:href="@{'/theme/'+${theme.id}}">
+						<div th:text="${theme.name}"></div>
+					</a>
+				</div>
+			</div>
+
+		</ul>
+	</div>
+</body>
+</html>
