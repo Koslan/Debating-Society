@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import ua.step.bookshop.models.Author;
-import ua.step.bookshop.models.Book;
-import ua.step.bookshop.models.Genre;
 import ua.step.debating.models.Theme;
 import ua.step.debating.repositories.ThemeRepository;
 

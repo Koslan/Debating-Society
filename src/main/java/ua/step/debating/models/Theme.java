@@ -43,13 +43,9 @@ public class Theme {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getFirstPosition() {
 		return firstPosition;

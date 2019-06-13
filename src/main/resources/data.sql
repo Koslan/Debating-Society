@@ -4,21 +4,31 @@ INSERT INTO Sphere(id, name) VALUES (3, 'Творчество');
 INSERT INTO Sphere(id, name) VALUES (4, 'Кино');
 INSERT INTO Sphere(id, name) VALUES (5, 'Другое');
 
-INSERT INTO Sphere(id, name, parent_id) VALUES (11, 'Государственный строй', 1);
-INSERT INTO Sphere(id, name, parent_id) VALUES (12, 'Политические режимы', 1);
-INSERT INTO Sphere(id, name, parent_id) VALUES (13, 'Риторика', 1);
-INSERT INTO Sphere(id, name, parent_id) VALUES (14, 'Либералы и консерваторы', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (101, 'Государственный строй', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (102, 'Политические режимы', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (103, 'Риторика', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (104, 'Либералы и консерваторы', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (105, 'ЗеКоманда', 1);
 
-INSERT INTO Sphere(id, name, parent_id) VALUES (21, 'Инновации', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (201, 'Инновации', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (202, 'Космос', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (203, 'Тесла', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (204, 'Роботы', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (205, 'Криптовалюта', 2);
 
-INSERT INTO Sphere(id, name, parent_id) VALUES (31, 'Современное искусство', 3);
-INSERT INTO Sphere(id, name, parent_id) VALUES (32, 'Художественные направления', 3);
-INSERT INTO Sphere(id, name, parent_id) VALUES (33, 'Цензура', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (301, 'Современное искусство', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (302, 'Художественные направления', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (303, 'Цензура', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (304, 'Арт искуство', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (305, 'Живопись', 3);
 
-INSERT INTO Sphere(id, name, parent_id) VALUES (41, 'СМИ', 4);
-INSERT INTO Sphere(id, name, parent_id) VALUES (42, 'Пропаганда', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (401, 'СМИ', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (402, 'Пропаганда', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (403, 'Сериалы', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (404, 'Мультфильмы', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (405, 'В прокате топ 5', 4);
 
-INSERT INTO Sphere(id, name, parent_id) VALUES (51, 'Кризис средней специальности', 5);
+INSERT INTO Sphere(id, name, parent_id) VALUES (501, 'Кризис средней специальности', 5);
 
 
 INSERT INTO User_Statistics(id, activity, reputation) VALUES (1, 62, 44);

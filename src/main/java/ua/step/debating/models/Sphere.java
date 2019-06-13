@@ -93,7 +93,6 @@ public class Sphere {
 	public void setThemes(List<Theme> themes) {
 		this.themes = themes;
 	}
-	
 }
 
 
