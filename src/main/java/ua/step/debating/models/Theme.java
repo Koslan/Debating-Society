@@ -11,8 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Theme")
 public class Theme {
 
 	@Id
@@ -30,6 +32,8 @@ public class Theme {
 	private List<Lobby>  listOfDebats;  //Список  дебатов
 	@ManyToMany
 	private List<User>  subscribers;
+	@ManyToOne
+	private Sphere sphere;
 	
 	private String ImageURL;
 	

@@ -4,6 +4,23 @@ INSERT INTO Sphere(id, name) VALUES (3, 'Творчество');
 INSERT INTO Sphere(id, name) VALUES (4, 'Кино');
 INSERT INTO Sphere(id, name) VALUES (5, 'Другое');
 
+INSERT INTO Sphere(id, name, parent_id) VALUES (11, 'Государственный строй', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (12, 'Политические режимы', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (13, 'Риторика', 1);
+INSERT INTO Sphere(id, name, parent_id) VALUES (14, 'Либералы и консерваторы', 1);
+
+INSERT INTO Sphere(id, name, parent_id) VALUES (21, 'Инновации', 2);
+
+INSERT INTO Sphere(id, name, parent_id) VALUES (31, 'Современное искусство', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (32, 'Художественные направления', 3);
+INSERT INTO Sphere(id, name, parent_id) VALUES (33, 'Цензура', 3);
+
+INSERT INTO Sphere(id, name, parent_id) VALUES (41, 'СМИ', 4);
+INSERT INTO Sphere(id, name, parent_id) VALUES (42, 'Пропаганда', 4);
+
+INSERT INTO Sphere(id, name, parent_id) VALUES (51, 'Кризис средней специальности', 5);
+
+
 INSERT INTO User_Statistics(id, activity, reputation) VALUES (1, 62, 44);
 INSERT INTO User_Statistics(id, activity, reputation) VALUES (2, 80, 56);
 INSERT INTO User_Statistics(id, activity, reputation) VALUES (3, 34, 15);
