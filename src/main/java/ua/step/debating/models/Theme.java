@@ -35,7 +35,7 @@ public class Theme {
 	@ManyToOne
 	private Sphere sphere;
 	
-	private String ImageURL;
+	private String backgroundImage;
 	
 	public Theme() {}
 	
@@ -63,11 +63,11 @@ public class Theme {
 	public void setSecondPosition(String secondPosition) {
 		this.secondPosition = secondPosition;
 	}
-	public String getImageURL() {
-		return ImageURL;
+	public String getBackgroundImage() {
+		return backgroundImage;
 	}
-	public void setImageURL(String imageURL) {
-		ImageURL = imageURL;
+	public void setBackgroundImage(String imageURL) {
+		backgroundImage = imageURL;
 	}
 	public String getName() {
 		return name;
