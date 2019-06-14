@@ -27,29 +27,27 @@
 <body>
 	<div class="card-columns">
 		<div class="card">
-			<div style="height: 900px" th:fragment="content">
+			<div th:fragment="content">
+				<!-- <div style="height: 900px" th:fragment="content"> -->
 				<link rel="stylesheet" href="/css/spheres.css">
 				<div class="container">
 					<div class="row">
-
 						<ul>
-							<li th:if="${sphere.id < 10}" class="h5"
+							<li th:if="${sphere.id < 99}" class="h5"
 								th:each="sphere : ${spheres}">
-								<div class="col-sm-12">
-									<div class="card-body">
-										<a th:href="@{'/spheres/'+${sphere.id}}"
-											th:text="${sphere.name}"> </a>
-									</div>
-								</div>
+								<div class="content-main">
+									<a th:href="@{'/spheres/'+${sphere.id}}"
+										th:text="${sphere.name}"> </a>
 								<ul class="h6" th:each="child : ${sphere.children}">
-									<a th:href="@{'/themes'}" th:text="${child.name}"> </a>
+									<div class="content-secondary">
+										<a th:href="@{'/themes'}" th:text="${child.name}"> </a>
 								</ul>
-							</li>
-					</div>
-					
+					</li>
 				</div>
+
 			</div>
 		</div>
+	</div>
 	</div>
 
 </body>
