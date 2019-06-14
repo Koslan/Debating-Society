@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import ua.step.debating.repositories.UserRepository;
 
+/**
+ * 
+ * @author Константин
+ *
+ */
 @Controller
 public class UserController {
 
