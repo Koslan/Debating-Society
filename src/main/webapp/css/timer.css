@@ -1,0 +1,129 @@
+@charset "UTF-8";
+{
+	display: inline-block;
+	column-break-inside: avoid;
+}
+
+.container {
+
+	background-color: #ccecff;
+
+}
+
+li {
+
+	margin-top: 10px;
+
+}
+
+.h5 a, .h5 li {
+
+	font-size: 15px;
+	color: #000;
+		
+}
+
+.h6 a, .h6 a {
+
+	font-size: 15px;
+	color:#007bff;
+			
+}
+
+.container {
+  max-width: 60em;
+  @include make-container();
+}
+.row {
+  @include make-row();
+}
+.content-main {
+  @include make-col();
+ 
+  @media (max-width: 32em) {
+    @include make-col-span(6);
+  }
+  @media (min-width: 32.1em) {
+    @include make-col-span(8);
+  }
+}
+.content-secondary {
+  @include make-col();
+ 
+  @media (max-width: 32em) {
+    @include make-col-span(6);
+  }
+  @media (min-width: 32.1em) {
+    @include make-col-span(4);
+  }
+}
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
+
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top:0px;
+}
+
+
