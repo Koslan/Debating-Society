@@ -32,7 +32,7 @@
 		
 		<div class="card-columns">
 		
-  			<div class="card" th:each="themes : ${themes}">
+  			<div  class="card" th:each="themes : ${themes}">
 
 				<div class="text-center">
   					<img th:src="@{${'../images/'+themes.backgroundImage}}" alt="Картинка" class="img-thumbnail">
@@ -40,7 +40,7 @@
 
     			<div class="card-body">
 
-    				<p class="h3 name card-title" th:text="${themes.name}"></p>
+    				<a class="h3 name card-title" th:href="@{'/autoConnect'}" th:text="${themes.name}"></a>
     			
 						<div class="positions h4">
     					<p class="card-text" th:text="${themes.firstPosition}"></p><p th:text="${themes.secondPosition}"></p>
