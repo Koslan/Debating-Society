@@ -10,5 +10,4 @@ public class DebatingApplication {
 		SpringApplication.run(DebatingApplication.class, args);
 		
 	}
-
 }
