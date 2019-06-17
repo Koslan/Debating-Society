@@ -102,3 +102,13 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+$('.timer').startTimer({
+  classNames: {
+    hours: 'myClass-hours',
+    minutes: 'myClass-minutes',
+    seconds: 'myClass-seconds',
+    clearDiv: 'myClass-clearDiv',
+    timeout: 'myClass-timeout'
+  }
+});

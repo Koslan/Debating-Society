@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Сферы</title>
+<title>Подсферы</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,22 +33,19 @@
 				<div class="container">
 					<div class="row">
 						<ul>
-							<li th:if="${sphere.id < 99}" class="h5"
-								th:each="sphere : ${spheres}">
-								<div class="content-main">
-									<a th:href="@{'/spheres/'+${sphere.id}}"
-										th:text="${sphere.name}"> </a>
-								<ul class="h6" th:each="child : ${sphere.children}">
-									<div class="content-secondary">
-										<a th:href="@{'/themes/'+${child.id}}" th:text="${child.name}"> </a>
+							<li th:if="${sphere.id == spheresId}" class="h5"
+								th:each="sphere : ${spheres}"><a
+								th:href="@{'/spheres/'+${sphere.id}}" th:text="${sphere.name}">
+							</a>
+								<ul class="h6" 
+								    th:each="child : ${sphere.children}">
+									<a th:href="@{'/themes/'+${child.id}}" th:text="${child.name}"> </a>
 								</ul>
-					</li>
+							</li>
+					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	</div>
-
 </body>
 </html>

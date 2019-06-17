@@ -17,7 +17,7 @@ public class Configuration {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
-	private String talkType; // дебаты/или дискуссия
+	private TalkType talkType; // дебаты/или дискуссия
 	private Integer generalTime; // время дискуссии/дебатов
 	private Integer timeoutTime;
 	private Integer timeoutFine; // штраф за истечение таймаута
@@ -32,14 +32,6 @@ public class Configuration {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getTalkType() {
-		return talkType;
-	}
-
-	public void setTalkType(String talkType) {
-		this.talkType = talkType;
 	}
 
 	public Integer getGeneralTime() {
@@ -88,5 +80,14 @@ public class Configuration {
 
 	public void setOrderOfDescants(List<User> orderOfDescants) {
 		this.orderOfDescants = orderOfDescants;
+	}
+
+	public void setTalkType(TalkType debate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public TalkType getTalkType() {
+		return talkType;
 	}
 }

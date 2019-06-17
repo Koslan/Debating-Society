@@ -35,6 +35,13 @@ public class Theme {
 	@ManyToOne
 	private Sphere sphere;
 	
+	public Sphere getSphere() {
+		return sphere;
+	}
+
+	public void setSphere(Sphere sphere) {
+		this.sphere = sphere;
+	}
 	private String backgroundImage;
 	
 	public Theme() {}

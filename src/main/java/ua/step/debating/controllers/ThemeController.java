@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.step.debating.models.Theme;
+import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
 
 @Controller
@@ -23,10 +24,28 @@ public class ThemeController {
 	 */
 	@Autowired
 	private ThemeRepository repoT;
+	private SphereRepository repoS;
 
 	@GetMapping("/themes")
 	public String getTheme(Model model) {
 		model.addAttribute("themes", repoT.findAll());
+		model.addAttribute("contentPage", "themes");
+		return "index";
+	}
+	
+	@GetMapping("/autoConnect")
+	public String getAutoConnect(Model model) {
+		model.addAttribute("themes", repoT.findAll());
+		//model.addAttribute("spheres", repoS.findAll());
+		model.addAttribute("contentPage", "themes");
+		return "index";
+	}
+	
+	@GetMapping("/themes/{themesId}")
+	public String getThemes(Model model, @PathVariable int themesId) {
+		model.addAttribute("themes", repoT.findAll());
+		//model.addAttribute("spheres", repoS.findAll());
+		model.addAttribute("themesId", themesId);
 		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
