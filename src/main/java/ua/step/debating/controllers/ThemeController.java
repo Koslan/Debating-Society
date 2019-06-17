@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import ua.step.debating.models.Theme;
 import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
@@ -73,6 +74,30 @@ public class ThemeController {
 		} else {
 			return "redirect:/themes/add";
 		}
+	}
+	
+	@GetMapping(value = "/themes/{themesId}", params = { "search" })
+	private String getSearchTheme(Model model, String search) {
+		int count = 0;
+		List<Theme> themeList = repoT.findAll();
+		List<Theme> searchList = null;
+		if (!search.isEmpty() && count == 0) {
+			searchList = new ArrayList<Theme>();
+			for (int i = 0; i < themeList.size(); i++) {
+				if (themeList.get(i).getName().toLowerCase().contains(search)) {
+					searchList.add(themeList.get(i));
+					count++;
+				}
+			}
+			model.addAttribute("themes", searchList);
+			model.addAttribute("contentPage", "themes");
+		}
+		if (search.isEmpty() || count == 0) {
+			model.addAttribute("themes", searchList);
+			model.addAttribute("searchRequest", search);
+			model.addAttribute("contentPage", "/fragments/invalidRequest");
+		}
+		return "index";
 	}
 
 }

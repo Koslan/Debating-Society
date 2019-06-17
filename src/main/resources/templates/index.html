@@ -31,5 +31,104 @@
 <body>
 	<div th:insert="fragments/header :: header(~{ :: .spells})">Header</div>
 	<div th:replace="${contentPage} :: content">Content</div>
+	
+	<script type="text/javascript">
+		
+		$("#commentator-message").keyup(function(event) {
+
+    	if(event.keyCode == 13 && $(this).val() != '') {
+
+    		var clear_block = document.createElement('div');
+    		clear_block.className = 'clearfix';
+
+    		var spectator_image = document.createElement('div');
+    		spectator_image.className = 'spectator-image';
+
+    		var link = document.createElement('a');
+    		link.href = '#';
+
+    		var user_picture = document.createElement('img');
+    		user_picture.src = '/images/nizkij flex.jpg';
+    		user_picture.classList.add('img-thumbnail');
+    		user_picture.classList.add('commentator');
+    		user_picture.alt = 'Spectator';
+
+    		link.appendChild(user_picture);
+    		spectator_image.appendChild(link);
+
+    		var message = document.createElement('div');
+    		message.classList.add('message');
+    		message.classList.add('of-spectators');
+    		message.classList.add('of-mine-as-commentator');
+    		message.classList.add('rounded');
+
+    		var nickname = document.createElement('p');
+    		nickname.classList.add('commentator-name');
+    		nickname.classList.add('h6');
+    		nickname.innerHTML = 'Я';
+
+    		var argument = document.createElement('p');
+    		argument.classList.add('argument');
+    		argument.classList.add('h6');
+    		argument.innerHTML = $(this).val();
+
+    		var create_date = document.createElement('p');
+    		create_date.className = 'create-date';
+    		create_date.innerHTML = '13.09';
+
+    		message.appendChild(nickname);
+    		message.appendChild(argument);
+    		message.appendChild(create_date);
+    		clear_block.appendChild(spectator_image);
+    		clear_block.appendChild(message);
+
+    		$(".for-commentators").append(clear_block);
+
+    		$('.for-commentators').scrollTop(100000);
+
+        $(this).val('');
+
+    	}
+
+		});
+		
+		$("#member-message").keyup(function(event) {
+
+	    	if(event.keyCode == 13 && $(this).val() != '') {
+
+	    		var clear_block = document.createElement('div');
+	    		clear_block.className = 'clearfix';
+
+	    		var message = document.createElement('div');
+	    		message.classList.add('message');
+	    		message.classList.add('of-debaters');
+	    		message.classList.add('of-mine-as-member');
+	    		message.classList.add('rounded');
+
+	    		var argument = document.createElement('p');
+	    		argument.classList.add('argument');
+	    		argument.classList.add('h6');
+	    		argument.innerHTML = $(this).val();
+
+	    		var create_date = document.createElement('p');
+	    		create_date.className = 'create-date';
+	    		create_date.innerHTML = '13.09';
+
+	    		message.appendChild(argument);
+	    		message.appendChild(create_date);
+	    		clear_block.appendChild(message);
+
+	    		$(".for-members").append(clear_block);
+
+	    		$('.for-members').scrollTop(100000);
+
+	        $(this).val('');
+
+	    	}
+
+			});
+
+	</script>
+	
 </body>
 </html>

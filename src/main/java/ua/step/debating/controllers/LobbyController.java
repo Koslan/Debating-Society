@@ -119,4 +119,11 @@ public class LobbyController {
 		model.addAttribute("contentPage", "timer");
 		return "timer";
 	}
+	
+	@GetMapping("/debateLobby")
+	public String getDebateChat(Model model) {
+		model.addAttribute("contentPage", "debateLobby");
+		return "index";
+	}
+	
 }
