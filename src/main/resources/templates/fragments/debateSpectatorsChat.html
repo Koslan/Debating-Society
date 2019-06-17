@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Debate Spectators Chat</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+
+<style type="text/css"></style>
+
+</head>
+<body>
+
+<div style="height: 900px" th:fragment="spectatorsChat">
+	
+	<div class="container main-field">
+
+		<div class="container chat-field for-commentators clearfix">
+			
+			<div class="clearfix">
+
+				<div class="spectator-image">
+						<a href="#">
+							<img src="/images/img_avatar.jpg" class="img-thumbnail commentator" alt="Spectator">
+						</a>
+				</div>
+
+				<div class="message of-spectators of-others rounded">
+					<p class="commentator-name h6">Зритель 1</p>
+					<p class="argument h6">Блин, какие скучные дебаты((</p>
+					<p class="create-date">13:07</p>
+				</div>
+
+			</div>
+
+			<div class="clearfix">
+
+				<div class="spectator-image">
+						<a href="#">
+							<img src="/images/img_avatar.png" class="img-thumbnail commentator" alt="Spectator">
+						</a>
+				</div>
+
+				<div class="message of-spectators of-others rounded">
+					<p class="commentator-name h6">Зритель 2</p>
+					<p class="argument h6">Неплохой аргумент</p>
+					<p class="create-date">13:07</p>
+				</div>
+
+			</div>
+
+			<div class="clearfix">
+
+				<div class="spectator-image">
+						<a href="#">
+							<img src="/images/nizkij flex.jpg" class="img-thumbnail commentator" alt="Spectator">
+						</a>
+				</div>
+
+				<div class="message of-spectators of-mine-as-commentator rounded">
+					<p class="commentator-name h6">Я</p>
+					<p class="argument h6">Пруфы будут???</p>
+					<p class="create-date">13:08</p>
+				</div>
+				
+			</div>
+
+			<div class="clearfix">
+
+				<div class="spectator-image">
+						<a href="#">
+							<img src="/images/svidetel.jpg" class="img-thumbnail commentator" alt="Spectator">
+						</a>
+				</div>
+
+				<div class="message of-spectators of-others rounded">
+					<p class="commentator-name h6">Зритель 3</p>
+					<p class="argument h6">Левый несёт чушь</p>
+					<p class="create-date">13:09</p>
+				</div>
+
+			</div>
+
+			<div class="clearfix">
+
+				<div class="spectator-image">
+						<a href="#">
+							<img src="/images/tupaja_elf.jpg" class="img-thumbnail commentator" alt="Spectator">
+						</a>
+				</div>
+
+				<div class="message of-spectators of-others rounded">
+					<p class="commentator-name h6">Зритель 4</p>
+					<p class="argument h6">Думаю, как раз он и выйграет</p>
+					<p class="create-date">13:11</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="container argument-label">
+			<input type="text" id="commentator-message" class="my-argument" placeholder="Напишите свой комментарий...">
+		</div>
+
+	</div>
+	
+</div>
+
+</body>
+</html>
+
