@@ -15,12 +15,12 @@ import ua.step.debating.repositories.UserRepository;
 @Controller
 public class UserController {
 
-	@Autowired
-	private UserRepository repoU;
+	//@Autowired
+	//private UserRepository repoU;
 
 	@GetMapping("/users")
 	public String getUsers(Model model) {
-		model.addAttribute("users", repoU.findAll());
+		model.addAttribute("users", "");//repoU.findAll());
 		return "users";
 	}
 }

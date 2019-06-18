@@ -49,14 +49,21 @@ INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (3, 3, 1)
 INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (4, 23, 6);
 INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (5, 13, 3);
 
-INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (1, 'chda98@bk.ru', 'DimasikAlmazzik', '123456', 1, 1);
-INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (2, 'animeLiker@gmail.ru', 'Alfred', '234567', 2, 2);
-INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (3, 'messy@inbox.ru', 'amacrim', '345678', 3, 3);
-INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (4, 'sulmatUUl@bk.ru', 'magIvoin2001', '456789', 4, 4);
-INSERT INTO User(id, email, name, password, lobby_statistics_id, statistics_id) VALUES (5, 'ZarinM@inbox.ru', 'CARstark', '567890', 5, 5);
+INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (1, 'chda98@bk.ru', 'DimasikAlmazzik', '123456', 1, 1);
+INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (2, 'animeLiker@gmail.ru', 'Alfred', '234567', 2, 2);
+INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (3, 'messy@inbox.ru', 'amacrim', '345678', 3, 3);
+INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (4, 'sulmatUUl@bk.ru', 'magIvoin2001', '456789', 4, 4);
+INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (5, 'ZarinM@inbox.ru', 'CARstark', '567890', 5, 5);
 
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (1, 'Java', 'Java vs C++', 'C++(Best of the Best)', 1, 'nizkij flex.jpg', 601);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (2, 'Крым русский', 'Крым наш или не наш?', 'Украина', 2, 'slidone.jpg', 601);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (3, 'Android', 'Android VS Apple', 'Apple', 3, 'svidetel.jpg', 601);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (4, 'Прогрессивный либерализм', 'Либеры против Консерв', 'Тупые консерваторы', 4, 'tupaja_elf.jpg', 603);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (5, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5, 'vanomas.jpg', 603);
+
+INSERT INTO Roles(id, roles) VALUES (1,'admin');
+INSERT INTO Roles(id, roles) VALUES (2,'user');
+
+
+INSERT INTO users_has_roles(users_id, roles_id) VALUES (2, 2);
+INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 1);

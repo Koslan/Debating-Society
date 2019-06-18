@@ -39,11 +39,11 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getRoles() {
+	public String getRole() {
 		return roles;
 	}
 
-	public void setRoles(String roles) {
+	public void setRole(String roles) {
 		this.roles = roles;
 	}
 

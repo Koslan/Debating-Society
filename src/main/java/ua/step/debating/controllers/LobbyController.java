@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.step.debating.models.Configuration;
 import ua.step.debating.models.Lobby;
@@ -51,8 +52,8 @@ public class LobbyController {
 	@Autowired
 	private ThemeRepository themeRepository;
 
-	@Autowired
-	UserRepository userRepository;
+	//@Autowired
+	//UserRepository userRepository;
 
 	@Autowired
 	private ThemeRepository repoT;
@@ -63,48 +64,34 @@ public class LobbyController {
 		return "lobbies";
 	}
 
+	
 	@GetMapping("/createDebate")
-	public String createDebate(Model model) {
+	public String createDebate(Model model) { 
 		model.addAttribute("contentPage", "createDebate");
 		model.addAttribute("spheres", repoS.findAll());
 		model.addAttribute("theme", themeRepository.findAll());
+
 		return "index";
 	}
 
-	/////////////////////////////
-	/*
-	 * @RequestMapping(method = RequestMethod.POST, value = "/register") public
-	 * Map<String, String> register(Model uiModel,
-	 * 
-	 * @RequestParam String username,
-	 * 
-	 * @RequestParam String password,
-	 * 
-	 * @RequestParam boolean auth, HttpServletRequest httpServletRequest)
-	 */
 
 	@PostMapping("/createDebate")
 	private String addBookSubmit(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Theme") Theme theme,
-			@ModelAttribute("Configuration") Configuration configuration, @ModelAttribute("Sphere") Sphere sphere) {
-
+			@ModelAttribute("Configuration") Configuration configuration, @ModelAttribute("Sphere") Sphere sphere, @ModelAttribute("spheresId") String sphereId,
+			@ModelAttribute("subSphereId") String subSphereId) {
+	
 		lobby.setCreateDate(Calendar.getInstance().getTime());
 		lobby.setActive(true);
+		lobby.setName(theme.getName() + " /n Пользователь1" + " vs " + "Пользователь2" );
 		configuration.setTalkType(TalkType.DEBATE);
 		configurationRepository.saveAndFlush(configuration);
 		lobby.setConfig(configuration);
 		repoL.saveAndFlush(lobby);
-
+		
 		return "redirect:/themes";
 	}
 
-	private User getAuthUserId(Integer idUs) {
-		for (User user : userRepository.findAll()) {
-			if (user.getId().equals(idUs)) {
-				return user;
-			}
-		}
-		return null;
-	}
+
 
 	@GetMapping("/debateAutoConnect")
 	public String getOpponent(Model model) {

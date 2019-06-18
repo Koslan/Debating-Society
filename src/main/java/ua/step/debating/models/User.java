@@ -20,13 +20,13 @@ import javax.persistence.Table;
 import ua.step.debating.models.Role;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
-	private String name;
+	private String login;
 	private String password;
 	private String email;
 
@@ -52,12 +52,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getPassword() {

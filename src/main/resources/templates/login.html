@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"  class="h-100">
+
+<head>
+<meta charset="UTF-8">
+<title>Log in</title>
+<link rel="stylesheet" href="css/mainStyle.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body class="container d-flex justify-content-center h-100 align-items-center">
+<div class="card" style="max-height:500px; width:400px">
+<div class="card-header">
+			<h2>Авторизация</h2>
+			<div class="alert alert-danger" th:if="${param.error}">Неверное
+				имя пользователя или пароль</div>
+			<div class="alert alert-danger" th:if="${param.logout}">Вы
+				вышли из системы</div>
+		</div>
+<form th:action="@{/login}" method="post" class="card-body">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<div class="form-group">
+				<label for="name">Имя пользователя</label>
+				<input type="text" class="form-control" id="name" name="username">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name="password">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<div class="card-footer">
+			<a href="/" role="button">Войти как гость</a>
+			<br>
+			<a href="/registration" role="button">Зарегистрироваться</a>
+		</div>
+	</div>
+</body>
+</html>
