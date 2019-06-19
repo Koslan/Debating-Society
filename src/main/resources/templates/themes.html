@@ -38,7 +38,7 @@
 		
 		<div class="card-columns">
 		
-  			<div  class="card" th:each="themes : ${themes}">
+  			<div  class="card" th:each="themes : ${themesTempary}">
 
 				<div class="text-center">
   					<img th:src="@{${'../images/'+themes.backgroundImage}}" alt="Картинка" class="img-thumbnail">
@@ -52,7 +52,7 @@
     					<p class="card-text" th:text="${themes.firstPosition}"></p><p th:text="${themes.secondPosition}"></p>
     				</div>
 
-    				<p class="card-text">Создатель: <span class="h5" th:text="${themes.creator.name}"></span></p>
+    				<p class="card-text">Создатель: <span class="h5" th:text="${themes.creator.login}"></span></p>
 
     				<p class="card-text">Количество проводимых дебатов: <span class="h5">1</span></p>
     				<p class="card-text">Количество проводимых дискуссий: <span class="h5">3</span></p>

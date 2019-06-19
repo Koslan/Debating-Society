@@ -16,6 +16,7 @@ INSERT INTO Sphere(id, name, parent_id) VALUES (202, 'Космос', 2);
 INSERT INTO Sphere(id, name, parent_id) VALUES (203, 'Тесла', 2);
 INSERT INTO Sphere(id, name, parent_id) VALUES (204, 'Роботы', 2);
 INSERT INTO Sphere(id, name, parent_id) VALUES (205, 'Криптовалюта', 2);
+INSERT INTO Sphere(id, name, parent_id) VALUES (206, 'Операционная система', 2);
 
 INSERT INTO Sphere(id, name, parent_id) VALUES (301, 'Современное искусство', 3);
 INSERT INTO Sphere(id, name, parent_id) VALUES (302, 'Художественные направления', 3);
@@ -35,6 +36,8 @@ INSERT INTO Sphere(id, name, parent_id) VALUES (601, 'Java', 6);
 INSERT INTO Sphere(id, name, parent_id) VALUES (602, 'C++', 6);
 INSERT INTO Sphere(id, name, parent_id) VALUES (603, 'JS', 6);
 INSERT INTO Sphere(id, name, parent_id) VALUES (604, 'SQL', 6);
+INSERT INTO Sphere(id, name, parent_id) VALUES (605, '.NET', 6);
+INSERT INTO Sphere(id, name, parent_id) VALUES (606, 'Python', 6);
 
 
 INSERT INTO User_Statistics(id, activity, reputation) VALUES (1, 62, 44);
@@ -59,7 +62,11 @@ INSERT INTO Theme(id, first_position, name, second_position, creator_id, backgro
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (2, 'Крым русский', 'Крым наш или не наш?', 'Украина', 2, 'slidone.jpg', 601);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (3, 'Android', 'Android VS Apple', 'Apple', 3, 'svidetel.jpg', 601);
 INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (4, 'Прогрессивный либерализм', 'Либеры против Консерв', 'Тупые консерваторы', 4, 'tupaja_elf.jpg', 603);
-INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (5, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5, 'vanomas.jpg', 603);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (9, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5, 'vanomas.jpg', 603);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (5, 'Java', 'Java vs JS', 'JS', 1, 'nizkij flex.jpg', 601);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (6, 'Java', 'Java vs SQL', 'SQL', 1, 'nizkij flex.jpg', 601);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (7, 'Java', 'Java vs .NET', 'C++(Best of the Best)', 1, 'nizkij flex.jpg', 601);
+INSERT INTO Theme(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (8, 'Java', 'Java vs Python', 'Python', 1, 'nizkij flex.jpg', 601);
 
 INSERT INTO Roles(id, roles) VALUES (1,'admin');
 INSERT INTO Roles(id, roles) VALUES (2,'user');
@@ -67,3 +74,17 @@ INSERT INTO Roles(id, roles) VALUES (2,'user');
 
 INSERT INTO users_has_roles(users_id, roles_id) VALUES (2, 2);
 INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 1);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (601, 1);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (601, 5);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (601, 6);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (601, 7);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (601, 8);
+
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (101, 2);
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (206, 3);
+INSERT INTO SPHERE_THEMES(sphere_id, themes_id) VALUES (104, 4);
