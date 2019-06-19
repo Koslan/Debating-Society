@@ -8,16 +8,16 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
-	
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 	crossorigin="anonymous"></script>
-	
+
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -27,45 +27,56 @@
 <body>
 
 	<div style="height: 900px" th:fragment="content">
-	
-	<form class="d-flex align-item-center m-2" th:action="${search}">
+
+		<form class="d-flex align-item-center m-2" th:action="${search}">
 			<input name="search" type="text" class="form-control mr-sm-0 p-0 m-0"
 				id="usr" placeholder="Поиск" style="max-width: 150px;">&#8194;
 			<button class="btn btn-outline-secondary m-0" type="submit">Поиск</button>
 		</form>
-	
-	<link rel="stylesheet" href="/css/themes.css">
-		
+
+		<link rel="stylesheet" href="/css/themes.css">
+
 		<div class="card-columns">
-		
-  			<div  class="card" th:each="themes : ${themesTempary}">
+
+			<div class="card" th:each="themes : ${themesTempary}">
 
 				<div class="text-center">
-  					<img th:src="@{${'../images/'+themes.backgroundImage}}" alt="Картинка" class="img-thumbnail">
+					<img th:src="@{${'../images/'+themes.backgroundImage}}"
+						alt="Картинка" class="img-thumbnail">
 				</div>
 
-    			<div class="card-body">
+				<div class="card-body">
+					<div class="text-center">
+						<a class="h3 name card-title" th:href="@{'/autoConnect'}"
+							th:text="${themes.name}"></a>
+					</div>
+					<div class="positions h4">
+						<p class="card-text" th:text="${themes.firstPosition}"></p>
+						<p th:text="${themes.secondPosition}"></p>
+					</div>
 
-    				<a class="h3 name card-title" th:href="@{'/autoConnect'}" th:text="${themes.name}"></a>
-    			
-						<div class="positions h4">
-    					<p class="card-text" th:text="${themes.firstPosition}"></p><p th:text="${themes.secondPosition}"></p>
-    				</div>
+					<p class="card-text">
+						Создатель: <span class="h5" th:text="${themes.creator.login}"></span>
+					</p>
 
-    				<p class="card-text">Создатель: <span class="h5" th:text="${themes.creator.login}"></span></p>
+					<p class="card-text">
+						Количество проводимых дебатов: <span class="h5">1</span>
+					</p>
+					<p class="card-text">
+						Количество проводимых дискуссий: <span class="h5">3</span>
+					</p>
 
-    				<p class="card-text">Количество проводимых дебатов: <span class="h5">1</span></p>
-    				<p class="card-text">Количество проводимых дискуссий: <span class="h5">3</span></p>
+					<p class="card-text">
+						Количество подписок: <span class="h5">12</span>
+					</p>
 
-    				<p class="card-text">Количество подписок: <span class="h5">12</span></p>
+				</div>
 
-    			</div>
+			</div>
 
-  			</div>
-  			
 		</div>
-		
+
 	</div>
-	
+
 </body>
 </html>
