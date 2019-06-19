@@ -25,10 +25,57 @@
 
 </head>
 <body>
-	<div class="card-columns">
+<div style="height: 900px" th:fragment="content">
+
+		<link rel="stylesheet" href="/css/themes.css">
+
+		<div class="card-columns">
+
+			<div class="card" th:each="themes : ${themesTempary}">
+
+				<div class="text-center">
+					<img th:src="@{${'../images/'+themes.backgroundImage}}"
+						alt="Картинка" class="img-thumbnail">
+				</div>
+
+				<div class="card-body">
+					<div class="text-center">
+						<a class="h3 name card-title" th:href="@{'/autoConnect'}"
+							th:text="${themes.name}"></a>
+					</div>
+					<div class="positions h4">
+						<p class="card-text" th:text="${themes.firstPosition}"></p>
+						<p th:text="${themes.secondPosition}"></p>
+					</div>
+
+					<p class="card-text">
+						Создатель: <span class="h5" th:text="${themes.creator.login}"></span>
+					</p>
+
+					<p class="card-text">
+						Количество проводимых дебатов: <span class="h5">1</span>
+					</p>
+					<p class="card-text">
+						Количество проводимых дискуссий: <span class="h5">3</span>
+					</p>
+
+					<p class="card-text">
+						Количество подписок: <span class="h5">12</span>
+					</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- <div class="card-columns">
 		<div class="card">
 			<div th:fragment="content">
-				<!-- <div style="height: 900px" th:fragment="content"> -->
+				<div style="height: 900px" th:fragment="content">
 				<link rel="stylesheet" href="/css/spheres.css">
 				<div class="container">
 					<div class="row">
@@ -49,7 +96,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </body>
 </html>
 

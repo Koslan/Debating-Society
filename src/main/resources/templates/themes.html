@@ -38,7 +38,7 @@
 
 		<div class="card-columns">
 
-			<div class="card" th:each="themes : ${themesTempary}">
+			<div class="card" th:each="themes : ${themes}">
 
 				<div class="text-center">
 					<img th:src="@{${'../images/'+themes.backgroundImage}}"

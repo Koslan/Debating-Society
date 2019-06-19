@@ -91,8 +91,6 @@ public class LobbyController {
 		return "redirect:/themes";
 	}
 
-
-
 	@GetMapping("/debateAutoConnect")
 	public String getOpponent(Model model) {
 		model.addAttribute("spheres", repoS.findAll());

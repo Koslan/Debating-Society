@@ -47,11 +47,11 @@ public class SphereController {
 					}*/
 				}
 			}
-			//model.addAttribute("themes", repoT.findAll());
+			model.addAttribute("themes", repoT.findAll());
 			model.addAttribute("spheres", repoS.findAll());
 			model.addAttribute("spheresId", spheresId);
 			model.addAttribute("themesTempary", themesTempary);
-			model.addAttribute("contentPage", "themes");
+			model.addAttribute("contentPage", "subthemes");
 		}
 
 		else {
