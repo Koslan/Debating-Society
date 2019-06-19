@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Sphere")
+@Table(name = "Spheres")
 public class Sphere {
 	
 	@Id
@@ -32,7 +32,7 @@ public class Sphere {
 	private Integer id;
 	private String name;
 	@Column(columnDefinition = "TEXT")//добавил
-	private String description;//добавил
+	TalkType talkType;//добавил
 	
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "parent_id")
@@ -43,13 +43,13 @@ public class Sphere {
 	
 	@OneToMany
 	private List<Theme> themes; // Темы, которые относятся к этой сфере
-	
-	public String getDescription() {
-		return description;
+
+	public TalkType getTalkType() {
+		return talkType;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTalkType(TalkType talkType) {
+		this.talkType = talkType;
 	}
 
 	public Sphere getParent() {
