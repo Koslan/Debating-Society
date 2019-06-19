@@ -1,9 +1,9 @@
-INSERT INTO Sphere(id, name) VALUES (1, 'Политика');
-INSERT INTO Sphere(id, name) VALUES (2, 'Техника');
-INSERT INTO Sphere(id, name) VALUES (3, 'Творчество');
-INSERT INTO Sphere(id, name) VALUES (4, 'Кино');
-INSERT INTO Sphere(id, name) VALUES (6, 'IT');
-INSERT INTO Sphere(id, name) VALUES (5, 'Другое');
+INSERT INTO Spheres(id, name) VALUES (1, 'Политика');
+INSERT INTO Spheres(id, name) VALUES (2, 'Техника');
+INSERT INTO Spheres(id, name) VALUES (3, 'Творчество');
+INSERT INTO Spheres(id, name) VALUES (4, 'Кино');
+INSERT INTO Spheres(id, name) VALUES (6, 'IT');
+INSERT INTO Spheres(id, name) VALUES (5, 'Другое');
 
 INSERT INTO Sphere(id, name, parent_id) VALUES (101, 'Государственный строй', 1);
 INSERT INTO Sphere(id, name, parent_id) VALUES (102, 'Политические режимы', 1);
