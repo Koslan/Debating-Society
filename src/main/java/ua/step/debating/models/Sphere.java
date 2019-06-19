@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Sphere")
+@Table(name = "Spheres")
 public class Sphere {
 	
 	@Id
