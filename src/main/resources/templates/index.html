@@ -127,6 +127,62 @@
 	    	}
 
 			});
+		
+		$('#surrender').tooltip({
+
+	    	title : 'Завершить беседу и признать своё поражение',
+	    	delay: { show: 750, hide: 750},
+
+			});
+		
+		$("#confirm-surrender").click(function(event) {
+
+			var clear_block = document.createElement('div');
+		clear_block.className = 'clearfix';
+
+		var message = document.createElement('div');
+		message.classList.add('message');
+		message.classList.add('of-debaters');
+		message.classList.add('-final');
+		message.classList.add('rounded');
+
+		var winner_report = document.createElement('p');
+		winner_report.classList.add('report');
+		winner_report.classList.add('h5');
+		winner_report.innerHTML = 'Петя признаёт поражение. 23 зрителя отдали ему свой голос.';
+
+		var loser_report = document.createElement('p');
+		loser_report.classList.add('report');
+		loser_report.classList.add('h5');
+		loser_report.innerHTML = 'Вася побеждает в дебатах. 45 зрителей отдали ему свой голос.';
+
+		var create_date = document.createElement('p');
+		create_date.className = 'create-date';
+		create_date.innerHTML = '13.10';
+
+		message.appendChild(winner_report);
+		message.appendChild(loser_report);
+		message.appendChild(create_date);
+		clear_block.appendChild(message);
+
+		$(".for-members").append(clear_block);
+
+		$('.for-members').scrollTop(100000);
+
+		$("#member-message").prop("disabled", true);
+		$("#surrender").detach();
+
+		var leave_lobby = document.createElement('button');
+
+		leave_lobby.classList.add('rounded');
+		leave_lobby.classList.add('h4');
+		leave_lobby.classList.add('leave');
+
+		leave_lobby.innerHTML = 'Покинуть лобби'
+
+		$(".argument-label").append(leave_lobby);
+
+	});
 
 	</script>
 	

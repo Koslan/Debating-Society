@@ -97,7 +97,31 @@
 
 		<div class="container argument-label">
 			<input type="text" id="member-message" class="my-argument" placeholder="Напишите свой тезис...">
+			<button id="surrender" class="rounded h3" data-toggle="modal" data-target="#exampleModal">
+				Сдасться
+			</button>
 		</div>
+
+		<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Вы признаете поражение?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Вы потеряете часть заработанных очков Репутации, однако сможете скомпенсировать реальную цену проигрыша.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я продолжаю дебаты</button>
+        <button type="submit" th:action="@{/debatersChat}" th:object="${lobby}" id="confirm-surrender" class="btn btn-primary" data-dismiss="modal">Я сдаюсь</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	</div>
 	
