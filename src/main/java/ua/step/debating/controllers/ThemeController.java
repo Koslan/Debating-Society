@@ -76,7 +76,7 @@ public class ThemeController {
 		}
 	}
 	
-	@GetMapping(value = "/themes/{themesId}", params = { "search" })
+	@GetMapping(value = "/themes", params = { "search" })
 	private String getSearchTheme(Model model, String search) {
 		int count = 0;
 		List<Theme> themeList = repoT.findAll();
@@ -84,7 +84,7 @@ public class ThemeController {
 		if (!search.isEmpty() && count == 0) {
 			searchList = new ArrayList<Theme>();
 			for (int i = 0; i < themeList.size(); i++) {
-				if (themeList.get(i).getName().toLowerCase().contains(search)) {
+				if (themeList.get(i).getName().toLowerCase().contains(search.toLowerCase())) {
 					searchList.add(themeList.get(i));
 					count++;
 				}
