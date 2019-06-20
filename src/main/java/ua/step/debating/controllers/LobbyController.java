@@ -20,6 +20,7 @@ import ua.step.debating.models.Sphere;
 import ua.step.debating.models.TalkType;
 import ua.step.debating.models.Theme;
 import ua.step.debating.models.User;
+import ua.step.debating.models.UserStatistics;
 import ua.step.debating.repositories.ConfigurationRepository;
 import ua.step.debating.repositories.LobbyRepository;
 
@@ -27,7 +28,7 @@ import ua.step.debating.repositories.LobbyStatisticsRepository;
 import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
 import ua.step.debating.repositories.UserRepository;
-
+import ua.step.debating.repositories.UserStatisticsRepository;
 import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
 
@@ -51,6 +52,15 @@ public class LobbyController {
 
 	@Autowired
 	private ThemeRepository themeRepository;
+	
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private LobbyStatisticsRepository lobbyStatRepo;
+	
+	@Autowired
+	private UserStatisticsRepository userStatRepo;
 
 	//@Autowired
 	//UserRepository userRepository;
@@ -111,6 +121,51 @@ public class LobbyController {
 	public String getDebateChat(Model model) {
 		model.addAttribute("contentPage", "debateLobby");
 		return "index";
+	}
+	
+	
+	 
+	/** Следующий метод реализует логику завершения дебатов и обновления соответствующих сущностей */
+	
+	@PostMapping(value = "/debateLobby", params = {"winnerReputation", "loserReputation",
+													"winnerActivity", "loserActivity"})
+	public String finishDebate(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Winner")
+							User winner, @ModelAttribute("Loser")
+							User loser, @ModelAttribute("LobbyStatisticsByWinner")
+							LobbyStatistics lobbyStatisticsByWinner,
+							@ModelAttribute("LobbyStatisticsByLoser")
+							LobbyStatistics lobbyStatisticsByLoser, @ModelAttribute("WinnerStatistics")
+							UserStatistics winnerStatistics, @ModelAttribute("LoserStatistics")
+							UserStatistics loserStatistics, Integer winnerReputation,
+							Integer loserReputation, Integer winnerActivity, Integer loserActivity) {
+		
+		lobby.setActive(false); // Данное лобби становится не активным после окончания беседы
+		
+		winner.getLobbies().add(lobby); 
+		loser.getLobbies().add(lobby);
+		
+		lobbyStatisticsByWinner.getListOfLobbyDebat().add(lobby);
+		lobbyStatisticsByLoser.getListOfLobbyDebat().add(lobby);
+		
+		winnerStatistics.setActivity(winnerReputation);
+		winnerStatistics.setActivity(winnerActivity);
+		
+		loserStatistics.setActivity(loserReputation);
+		loserStatistics.setActivity(loserActivity);
+		
+		repoL.saveAndFlush(lobby);
+		
+		userRepo.saveAndFlush(winner);
+		userRepo.saveAndFlush(loser);
+		
+		lobbyStatRepo.saveAndFlush(lobbyStatisticsByWinner);
+		lobbyStatRepo.saveAndFlush(lobbyStatisticsByLoser);
+		
+		userStatRepo.saveAndFlush(winnerStatistics);
+		userStatRepo.saveAndFlush(loserStatistics);
+		
+		return "redirect:/debateLobby";
+		
 	}
 	
 }

@@ -4,6 +4,7 @@
 	
 	display: flex;
 	justify-content: space-around;
+	margin-top: 20px;
 	
 }
 
@@ -194,11 +195,158 @@ img {
 
 }
 
+.argument-label {
+
+	display: flex;
+	justify-content: space-between;
+
+}
+
 .my-argument {
 
-	width: 100%;
+	display: inline-block;
+	width: 62%;
 	height: 45px;
-	margin: 20px 0;
+	margin: 2% 0;
 	padding: 0 10px;
+
+}
+
+#surrender {
+ 
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 36%;
+	height: 45px;
+	background-color: #f44242;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	margin: 2% 0;
+
+}
+
+.leave {
+
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 36%;
+	height: 45px;
+	background-color: #79fc84;
+	border: none;
+	outline: none;
+	margin: 2% 0;
+
+}
+
+#surrender:hover, .leave:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+
+}
+
+#surrender:active {
+		
+	box-shadow: 0 0 0 0.2rem rgba(255, 58, 50,.5);
+
+}
+
+#surrender:disabled {
+		
+	background-color: #bfbfbf;
+
+}
+
+.leave:active {
+		
+	box-shadow: 0 0 0 0.2rem rgba(53, 255, 70,.9);
+
+}
+
+.leave:focus {
+
+	border: none;
+	outline: none;
+
+}
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+
+    border-top-color: rgb(189, 193, 201, 0.9);
+
+}
+
+.tooltip-inner {
+
+    max-width: 250px;
+    color: #000;
+    background-color: rgb(189, 193, 201, 0.9);
+    border-radius: 0.25rem;
+
+}
+
+.btn-secondary {
+
+	background-color: #6eb3e5;
+	border: none;
+	outline: none;
+
+}
+
+.btn-primary {
+
+	background-color: #ef5953;
+	border: none;
+	outline: none;
+
+}
+
+.btn-secondary:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+	background-color: #6eb3e5;
+
+}
+
+.btn-primary:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+	background-color: #ef5953;
+
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+		
+	background-color: #6eb3e5;
+
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+		
+	background-color: #ef5953;
+
+}
+
+.-final {
+
+	float: left;
+	min-width: 100%;
+	overflow-wrap: break-word;
+	background-color: #79fc84;
+
+}
+
+.report {
+
+	text-align: center;
+
+}
+
+#surrender:disabled{
+		
+	background-color: #bfbfbf;
+	cursor: default;
 
 }
