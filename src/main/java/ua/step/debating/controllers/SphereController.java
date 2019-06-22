@@ -14,12 +14,18 @@ import ua.step.debating.models.Theme;
 import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
 
+/**
+ * 
+ * @author Vitaly
+ *
+ */
+
 @Controller
 public class SphereController {
 
 	@Autowired
 	private SphereRepository repoS;
-	
+
 	@Autowired
 	private ThemeRepository repoT;
 
@@ -39,12 +45,9 @@ public class SphereController {
 			List<Theme> themesTempary = new ArrayList<Theme>();
 
 			for (Sphere sphere : spheres) {
-			if (sphere.getId().equals(spheresId)) {
+				if (sphere.getId().equals(spheresId)) {
 					themesTempary = sphere.getThemes();
 					System.out.println(themesTempary.size());
-					/*for (Theme theme : themesTempary) {
-						chooseThemes.add(theme);
-					}*/
 				}
 			}
 			model.addAttribute("themes", repoT.findAll());
@@ -89,12 +92,3 @@ public class SphereController {
 	
 	
 }
-/*	@GetMapping("/spheres/{spheresId}")
-	public String getSubspheres(Model model, @PathVariable int spheresId) {
-		model.addAttribute("spheres", repoS.findAll());
-		model.addAttribute("spheresId", spheresId);
-		model.addAttribute("contentPage", "subspheres");
-		return "index";
-	}*/
-	
-

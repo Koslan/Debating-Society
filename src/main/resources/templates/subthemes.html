@@ -25,7 +25,7 @@
 
 </head>
 <body>
-<div style="height: 900px" th:fragment="content">
+	<div style="height: 900px" th:fragment="content">
 
 		<link rel="stylesheet" href="/css/themes.css">
 
@@ -46,7 +46,7 @@
 
 				<div class="card-body">
 					<div class="text-center">
-						<a class="h3 name card-title" th:href="@{'/autoConnect'}"
+						<a class="h3 name card-title" th:href="@{'/debateAutoConnect'}"
 							th:text="${themes.name}"></a>
 					</div>
 					<div class="positions h4">
@@ -77,32 +77,6 @@
 
 	</div>
 
-
-	<!-- <div class="card-columns">
-		<div class="card">
-			<div th:fragment="content">
-				<div style="height: 900px" th:fragment="content">
-				<link rel="stylesheet" href="/css/spheres.css">
-				<div class="container">
-					<div class="row">
-						<ul>
-						<li th:if="${sphere.id == spheresId}" class="h5"
-								th:each="sphere : ${spheres}"><a
-								th:href="@{'/spheres/'+${sphere.id}}" th:text="${sphere.name}">
-							</a>
-								<ul class="h6" th:each="child : ${sphere.children}">
-									<a th:href="@{'/spheres/'+${child.id}}" th:text="${child.name}">
-									</a>
-								</ul>
-						<ul  class="h6" th:each="theme : ${themesTempary}">
-								<a th:href="@{'/theme/'+${theme.id}}" th:text="${theme.name}">
-								</a></ul>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </body>
 </html>
 
