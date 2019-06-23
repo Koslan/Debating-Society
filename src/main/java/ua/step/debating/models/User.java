@@ -34,7 +34,7 @@ public class User {
 	@JoinTable(name = "users_has_roles", joinColumns = {
 			@JoinColumn(name = "users_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "roles_id", nullable = false, updatable = false) })
-    private List<Role> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<Role>();
 	@OneToMany
 	private List<Message> messages;
 	@OneToOne

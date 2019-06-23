@@ -70,10 +70,12 @@ INSERT INTO Themes(id, first_position, name, second_position, creator_id, backgr
 
 INSERT INTO Roles(id, roles) VALUES (1,'admin');
 INSERT INTO Roles(id, roles) VALUES (2,'user');
+INSERT INTO Roles(id, roles) VALUES (3,'moderator');
 
 
 INSERT INTO users_has_roles(users_id, roles_id) VALUES (2, 2);
 INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 1);
+INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 3);
 
 INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 1);
 

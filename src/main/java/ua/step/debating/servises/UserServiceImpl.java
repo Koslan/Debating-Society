@@ -12,7 +12,6 @@ import ua.step.debating.repositories.RoleRepository;
 import ua.step.debating.repositories.UserRepository;
 
 
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -35,7 +34,5 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findByLogin(String login) {
 		return userRepository.findByLogin(login);
-	}
-
-	
+	}	
 }

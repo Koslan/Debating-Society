@@ -71,6 +71,19 @@
 				</div>
 			</div>
 			<!-- Конец Профиля -->
+			<th:block sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<input class="btn btn-outline-secondary my-2 mr-sm-2 m-0"
+					type="submit" value="Sign Out" />
+			</form>
+		</th:block>
+
+		<th:block sec:authorize="isAnonymous()">
+			<form th:action="@{/logout}" method="post">
+				<input class="btn btn-outline-secondary my-2 mr-sm-2" type="submit"
+					value="Sign In" />
+			</form>
+		</th:block>
 		</nav>
 	</div>
 </body>
