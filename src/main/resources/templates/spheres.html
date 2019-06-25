@@ -25,60 +25,59 @@ Vitaliy, [18.06.19 23:29]
   crossorigin="anonymous"></script>
 
 </head>
-<body>
-  <div class="card-columns">
-    <div class="card">
-      <div th:fragment="content">
-        <!-- <div style="height: 900px" th:fragment="content"> -->
-        <link rel="stylesheet" href="/css/spheres.css">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <ul>
-                <li th:if="${sphere.id < 99 && sphere.id%3 == 1 }" class="h5"
-                  th:each="sphere : ${spheres}">
-                  <div class="content-main">
-                    <a th:href="@{'/spheres/'+${sphere.id}}"
-                      th:text="${sphere.name}"> </a>
-                    <ul class="h6" th:each="child : ${sphere.children}">
-                      <div class="content-secondary">
-                        <a th:href="@{'/spheres/'+${child.id}}"
-                          th:text="${child.name}"> </a>
-                    </ul>
-                </li>
-            </div>
-            <div class="col">
-              <ul>
-                <li th:if="${sphere.id < 99 && sphere.id%3 == 2}" class="h5"
-                  th:each="sphere : ${spheres}">
-                  <div class="content-main">
-                    <a th:href="@{'/spheres/'+${sphere.id}}"
-                      th:text="${sphere.name}"> </a>
-                    <ul class="h6" th:each="child : ${sphere.children}">
-                      <div class="content-secondary">
-                        <a th:href="@{'/spheres/'+${child.id}}"
-                          th:text="${child.name}"> </a>
-                    </ul>
-                </li>
-            </div>
-            <div class="col">
-              <ul>
-                <li th:if="${sphere.id < 99 && sphere.id%3 == 0}" class="h5"
-                  th:each="sphere : ${spheres}">
-                  <div class="content-main">
-                    <a th:href="@{'/spheres/'+${sphere.id}}"
-                      th:text="${sphere.name}"> </a>
-                    <ul class="h6" th:each="child : ${sphere.children}">
-                      <div class="content-secondary">
-                        <a th:href="@{'/spheres/'+${child.id}}"
-                          th:text="${child.name}"> </a>
-                    </ul>
-                </li>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<body th:fragment="content">
+
+
+	<div style="height: 900px">
+		<link rel="stylesheet" href="/css/spheres.css">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<ul>
+						<li th:if="${sphere.id < 99 && sphere.id%3 == 1 }" class="h5"
+							th:each="sphere : ${spheres}">
+							<div class="content-main" mb-3>
+								<a th:href="@{'/spheres/'+${sphere.id}}"
+									th:text="${sphere.name}"> </a>
+								<ul class="h6" th:each="child : ${sphere.children}">
+									<div class="content-secondary">
+										<a th:href="@{'/spheres/'+${child.id}}"
+											th:text="${child.name}"> </a>
+								</ul>
+						</li>
+				</div>
+				<div class="col">
+					<ul>
+						<li th:if="${sphere.id < 99 && sphere.id%3 == 2}" class="h5"
+							th:each="sphere : ${spheres}">
+							<div class="content-main">
+								<a th:href="@{'/spheres/'+${sphere.id}}"
+									th:text="${sphere.name}"> </a>
+								<ul class="h6" th:each="child : ${sphere.children}">
+									<div class="content-secondary">
+										<a th:href="@{'/spheres/'+${child.id}}"
+											th:text="${child.name}"> </a>
+								</ul>
+						</li>
+				</div>
+				<div class="col">
+					<ul>
+						<li th:if="${sphere.id < 99 && sphere.id%3 == 0}" class="h5"
+							th:each="sphere : ${spheres}">
+							<div class="content-main">
+								<a th:href="@{'/spheres/'+${sphere.id}}"
+									th:text="${sphere.name}"> </a>
+								<ul class="h6" th:each="child : ${sphere.children}">
+									<div class="content-secondary">
+										<a th:href="@{'/spheres/'+${child.id}}"
+											th:text="${child.name}"> </a>
+								</ul>
+						</li>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 </html>
