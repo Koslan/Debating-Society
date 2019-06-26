@@ -4,14 +4,13 @@ import java.util.Calendar;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.step.debating.models.Configuration;
 import ua.step.debating.models.Lobby;
@@ -29,8 +28,7 @@ import ua.step.debating.repositories.SphereRepository;
 import ua.step.debating.repositories.ThemeRepository;
 import ua.step.debating.repositories.UserRepository;
 import ua.step.debating.repositories.UserStatisticsRepository;
-import ua.step.debating.repositories.SphereRepository;
-import ua.step.debating.repositories.ThemeRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * 
@@ -53,7 +51,7 @@ public class LobbyController {
 	private ThemeRepository themeRepository;
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepository userRepository;
 	
 	@Autowired
 	private LobbyStatisticsRepository lobbyStatRepo;
@@ -64,6 +62,7 @@ public class LobbyController {
 	@GetMapping("/lobbies")
 	public String getLobbies(Model model) {
 		model.addAttribute("lobbies", lobbyRepository.findAll());
+		getHeader(model);
 		return "lobbies";
 	}
 
@@ -73,7 +72,7 @@ public class LobbyController {
 		model.addAttribute("contentPage", "createDebate");
 		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("theme", themeRepository.findAll());
-
+		getHeader(model);
 		return "index";
 	}
 
@@ -99,6 +98,7 @@ public class LobbyController {
 		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("themes", themeRepository.findAll());
 		model.addAttribute("contentPage", "debateAutoConnect");
+		getHeader(model);
 		return "index";
 	}
 
@@ -106,12 +106,14 @@ public class LobbyController {
 	public String getTimer(Model model) {
 		model.addAttribute("lobbies", lobbyRepository.findAll());
 		model.addAttribute("contentPage", "timer");
+		getHeader(model);
 		return "timer";
 	}
 	
 	@GetMapping("/debateLobby")
 	public String getDebateChat(Model model) {
 		model.addAttribute("contentPage", "debateLobby");
+		getHeader(model);
 		return "index";
 	}
 	
@@ -145,8 +147,8 @@ public class LobbyController {
 		
 		lobbyRepository.saveAndFlush(lobby);
 		
-		userRepo.saveAndFlush(winner);
-		userRepo.saveAndFlush(loser);
+		userRepository.saveAndFlush(winner);
+		userRepository.saveAndFlush(loser);
 		
 		lobbyStatRepo.saveAndFlush(lobbyStatisticsByWinner);
 		lobbyStatRepo.saveAndFlush(lobbyStatisticsByLoser);
@@ -154,6 +156,33 @@ public class LobbyController {
 		userStatRepo.saveAndFlush(winnerStatistics);
 		userStatRepo.saveAndFlush(loserStatistics);
 		
+		
 		return "redirect:/debateLobby";	
 	}	
+	
+	private Integer getAuthUserId(UserRepository repo) {
+		Integer id = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		if (!name.equals("anonymousUser")) {
+			Optional<User> user = repo.findByLogin(name);
+			id = user.get().getId();
+		}
+		return id;
+	}
+
+	private void getHeader(Model model) {
+		Integer idUs = getAuthUserId(userRepository);
+		if (idUs != null) {
+			User user = userRepository.findById(idUs).orElse(new User());
+			model.addAttribute("image", user.getUserImage());
+			model.addAttribute("reputation", user.getStatistics().getReputation());
+			model.addAttribute("activity", user.getStatistics().getActivity());
+		} else {
+			model.addAttribute("image", "");
+			model.addAttribute("reputation", 0);
+			model.addAttribute("activity", 0);
+		}
+	}
+
 }

@@ -18,4 +18,6 @@ public class ConfigurationController {
 		model.addAttribute("configurations", repoC.findAll());
 		return "configurations";
 	}
+	
+	
 }

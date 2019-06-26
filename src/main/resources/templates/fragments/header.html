@@ -66,8 +66,8 @@
 						</a> <span class="dropdown-item-text" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
 
 						<p class="card-text">
-							Репутация: <span class="h4" th:text="${reputation}"> </span>
-							Активность: <span class="h4" th:text="${activity}"> </span>
+							<span class="dropdown-item-text" th:text="${'Репутация: ' + reputation}"> </span>
+							<span class="dropdown-item-text" th:text="${'Активность: ' + activity}"> </span>
 						</p>
 
 						<div class="dropdown-divider"></div>

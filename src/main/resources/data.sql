@@ -43,12 +43,14 @@ INSERT INTO Spheres(id, name, parent_id) VALUES (606, 'Python', 6);
 INSERT INTO 
 User_Statistics(id, activity, reputation) 
 VALUES 
-(1, 62, 44), (2, 80, 56), (3, 34, 15), (4, 98, 45), (5, 56, 52), (6, 50, 58), (7, 56, 52);
+(1, 62, 44), (2, 80, 56), (3, 34, 15), (4, 98, 45), 
+(5, 56, 52), (6, 50, 58), (7, 56, 52);
 
 INSERT INTO 
 Lobby_Statistics(id, debat_count, discussion_count) 
 VALUES 
-(1, 12, 5), (2, 15, 11), (3, 3, 1), (4, 23, 6), (5, 13, 3), (6, 15, 4), (7, 8, 1);
+(1, 12, 5), (2, 15, 11), (3, 3, 1), (4, 23, 6), 
+(5, 13, 3), (6, 15, 4), (7, 8, 1);
 
 INSERT INTO Users
 (id, email, login, password, lobby_statistics_id, statistics_id, user_image) 

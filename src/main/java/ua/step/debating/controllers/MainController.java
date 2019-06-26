@@ -22,34 +22,15 @@ public class MainController {
 
 	@GetMapping("/")
 	private String getIndex(Model model) {
-		Integer idUs = getAuthUserId(userRepository);
-		if (idUs != null) {
-			User user = userRepository.findById(idUs).orElse(new User());
-			model.addAttribute("image", user.getUserImage());
-			model.addAttribute("reputation", user.getStatistics().getReputation());
-			model.addAttribute("activity", user.getStatistics().getActivity());
-		} else {
-			model.addAttribute("image", "");
-			model.addAttribute("reputation", 0);
-			model.addAttribute("activity", 0);
-		}
+		getHeader(model);
 		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("contentPage", "spheres");
 		return "index";
 	}
 
-	@GetMapping("/header")
-	private String getIndex1(Model model) {
-		Integer idUs = getAuthUserId(userRepository);
-		User user = userRepository.findById(idUs).orElse(new User());
-		model.addAttribute("image", user.getUserImage());
-		model.addAttribute("reputation", user.getStatistics().getReputation());
-		model.addAttribute("activity", user.getStatistics().getActivity());
-		return "index";
-	}
-
 	@GetMapping("/inDeveloping")
 	private String getInDevelopingMessage(Model model) {
+		getHeader(model);
 		model.addAttribute("contentPage", "inDeveloping");
 		return "index";
 	}
@@ -62,7 +43,20 @@ public class MainController {
 			Optional<User> user = repo.findByLogin(name);
 			id = user.get().getId();
 		}
-
 		return id;
+	}
+
+	private void getHeader(Model model) {
+		Integer idUs = getAuthUserId(userRepository);
+		if (idUs != null) {
+			User user = userRepository.findById(idUs).orElse(new User());
+			model.addAttribute("image", user.getUserImage());
+			model.addAttribute("reputation", user.getStatistics().getReputation());
+			model.addAttribute("activity", user.getStatistics().getActivity());
+		} else {
+			model.addAttribute("image", "");
+			model.addAttribute("reputation", 0);
+			model.addAttribute("activity", 0);
+		}
 	}
 }
