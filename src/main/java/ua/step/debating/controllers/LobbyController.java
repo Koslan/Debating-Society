@@ -41,14 +41,13 @@ import ua.step.debating.repositories.ThemeRepository;
 public class LobbyController {
 
 	@Autowired
-	private LobbyRepository repoL;
+	private LobbyRepository lobbyRepository;
 
 	@Autowired
-
 	private ConfigurationRepository configurationRepository;
 
 	@Autowired
-	private SphereRepository repoS;
+	private SphereRepository sphereRepository;
 
 	@Autowired
 	private ThemeRepository themeRepository;
@@ -62,15 +61,9 @@ public class LobbyController {
 	@Autowired
 	private UserStatisticsRepository userStatRepo;
 
-	//@Autowired
-	//UserRepository userRepository;
-
-	@Autowired
-	private ThemeRepository repoT;
-
 	@GetMapping("/lobbies")
 	public String getLobbies(Model model) {
-		model.addAttribute("lobbies", repoL.findAll());
+		model.addAttribute("lobbies", lobbyRepository.findAll());
 		return "lobbies";
 	}
 
@@ -78,7 +71,7 @@ public class LobbyController {
 	@GetMapping("/createDebate")
 	public String createDebate(Model model) { 
 		model.addAttribute("contentPage", "createDebate");
-		model.addAttribute("spheres", repoS.findAll());
+		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("theme", themeRepository.findAll());
 
 		return "index";
@@ -96,21 +89,22 @@ public class LobbyController {
 		configuration.setTalkType(TalkType.DEBATE);
 		configurationRepository.saveAndFlush(configuration);
 		lobby.setConfig(configuration);
-		repoL.saveAndFlush(lobby);
+		lobbyRepository.saveAndFlush(lobby);
 		
 		return "redirect:/themes";
 	}
 
-	@GetMapping("/debateAutoConnect")
+	@GetMapping("/debateAutoConnect/{id}")
 	public String getOpponent(Model model) {
-		model.addAttribute("spheres", repoS.findAll());
-		model.addAttribute("themes", repoT.findAll());
-		return "debateAutoConnect";
+		model.addAttribute("spheres", sphereRepository.findAll());
+		model.addAttribute("themes", themeRepository.findAll());
+		model.addAttribute("contentPage", "debateAutoConnect");
+		return "index";
 	}
 
 	@GetMapping("/timer")
 	public String getTimer(Model model) {
-		model.addAttribute("lobbies", repoL.findAll());
+		model.addAttribute("lobbies", lobbyRepository.findAll());
 		model.addAttribute("contentPage", "timer");
 		return "timer";
 	}
@@ -121,8 +115,6 @@ public class LobbyController {
 		return "index";
 	}
 	
-	
-	 
 	/** Следующий метод реализует логику завершения дебатов и обновления соответствующих сущностей */
 	
 	@PostMapping(value = "/debateLobby", params = {"winnerReputation", "loserReputation",
@@ -151,7 +143,7 @@ public class LobbyController {
 		loserStatistics.setActivity(loserReputation);
 		loserStatistics.setActivity(loserActivity);
 		
-		repoL.saveAndFlush(lobby);
+		lobbyRepository.saveAndFlush(lobby);
 		
 		userRepo.saveAndFlush(winner);
 		userRepo.saveAndFlush(loser);
@@ -162,8 +154,6 @@ public class LobbyController {
 		userStatRepo.saveAndFlush(winnerStatistics);
 		userStatRepo.saveAndFlush(loserStatistics);
 		
-		return "redirect:/debateLobby";
-		
-	}
-	
+		return "redirect:/debateLobby";	
+	}	
 }
