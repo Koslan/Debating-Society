@@ -36,7 +36,7 @@
 		<nav class="navbar navbar-expand-sm rounded border shadow-sm"
 			th:fragment="header(search)">
 			<a class="navbar-brand" href="/"><img
-				th:src="@{'/images/logo.jpg'}" width="60"> </a>
+				th:src="@{'/images/debating/logo-2.jpg'}" width="60"> </a>
 
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item"><a class="nav-link" href="/inDeveloping">Лента</a></li>
@@ -50,40 +50,51 @@
 				href="/inDeveloping">Создать Дискуссию</a>
 
 			<!-- Профиль -->
-			<div class="btn-group rounded-circle mt-3 mr-3 dropdown">
-				<a href="#" id="imageDropdown" data-toggle="collapse"
-					data-target="#navbar"> <img class="rounded-circle"
-					src="/images/img_avatar.jpg" alt="Person" width="60" height="60">
-				</a>
-				<!-- Выпадающее меню -->
-				<div id="navbar" class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#"> <img class="rounded-circle"
-						src="/images/img_avatar.jpg" alt="Person" width="60" height="60">
-					</a> <span class="dropdown-item-text">Константин</span> <span
-						class="dropdown-item-text">Репутация: 34</span>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/inDeveloping">Профиль</a> <a
-						class="dropdown-item" href="/inDeveloping">Подписчики</a> <a
-						class="dropdown-item" href="/inDeveloping">Подписки</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/inDeveloping">Настройки</a> <a
-						class="dropdown-item" href="/inDeveloping">Выйти</a>
+			<th:block sec:authorize="isAuthenticated()">
+				<div class="btn-group rounded-circle mt-3 mr-3 dropdown">
+					<a href="#" id="imageDropdown" data-toggle="collapse"
+						data-target="#navbar"> <img class="rounded-circle"
+						th:src="@{${'../images/users/' + image}}" alt="Person" width="60"
+						height="60"> <!-- src="/images/users/1.jpg" alt="Person" width="60" height="60"> -->
+					</a>
+					<!-- Выпадающее меню -->
+
+					<div id="navbar" class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="#"> <img class="rounded-circle"
+							th:src="@{${'../images/users/' + image}}" alt="Person" width="60"
+							height="60">
+						</a> <span class="dropdown-item-text" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+
+						<p class="card-text">
+							Репутация: <span class="h4" th:text="${reputation}"> </span>
+							Активность: <span class="h4" th:text="${activity}"> </span>
+						</p>
+
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/inDeveloping">Профиль</a> <a
+							class="dropdown-item" href="/inDeveloping">Подписчики</a> <a
+							class="dropdown-item" href="/inDeveloping">Подписки</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/inDeveloping">Настройки</a> <a
+							class="dropdown-item" href="/login" method="post">Выйти</a>
+					</div>
+
 				</div>
-			</div>
+			</th:block>
 			<!-- Конец Профиля -->
 			<th:block sec:authorize="isAuthenticated()">
-			<form th:action="@{/logout}" method="post">
-				<input class="btn btn-outline-secondary my-2 mr-sm-2 m-0"
-					type="submit" value="Sign Out" />
-			</form>
-		</th:block>
+				<form th:action="@{/logout}" method="post">
+					<input class="btn btn-outline-secondary my-2 mr-sm-2 mt-4 "
+						type="submit" value="Sign Out" />
+				</form>
+			</th:block>
 
-		<th:block sec:authorize="isAnonymous()">
-			<form th:action="@{/logout}" method="post">
-				<input class="btn btn-outline-secondary my-2 mr-sm-2" type="submit"
-					value="Sign In" />
-			</form>
-		</th:block>
+			<th:block sec:authorize="isAnonymous()">
+				<form th:action="@{/logout}" method="post">
+					<input class="btn btn-outline-secondary my-2 mr-sm-2 mt-4 "
+						type="submit" value="Sign In" />
+				</form>
+			</th:block>
 		</nav>
 	</div>
 </body>

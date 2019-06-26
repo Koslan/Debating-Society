@@ -40,53 +40,51 @@ INSERT INTO Spheres(id, name, parent_id) VALUES (605, '.NET', 6);
 INSERT INTO Spheres(id, name, parent_id) VALUES (606, 'Python', 6);
 
 
-INSERT INTO User_Statistics(id, activity, reputation) VALUES (1, 62, 44);
-INSERT INTO User_Statistics(id, activity, reputation) VALUES (2, 80, 56);
-INSERT INTO User_Statistics(id, activity, reputation) VALUES (3, 34, 15);
-INSERT INTO User_Statistics(id, activity, reputation) VALUES (4, 98, 45);
-INSERT INTO User_Statistics(id, activity, reputation) VALUES (5, 56, 52);
+INSERT INTO 
+User_Statistics(id, activity, reputation) 
+VALUES 
+(1, 62, 44), (2, 80, 56), (3, 34, 15), (4, 98, 45), (5, 56, 52), (6, 50, 58), (7, 56, 52);
 
-INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (1, 12, 5);
-INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (2, 15, 11);
-INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (3, 3, 1);
-INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (4, 23, 6);
-INSERT INTO Lobby_Statistics(id, debat_count, discussion_count) VALUES (5, 13, 3);
+INSERT INTO 
+Lobby_Statistics(id, debat_count, discussion_count) 
+VALUES 
+(1, 12, 5), (2, 15, 11), (3, 3, 1), (4, 23, 6), (5, 13, 3), (6, 15, 4), (7, 8, 1);
 
-INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (1, 'chda98@bk.ru', 'DimasikAlmazzik', '123456', 1, 1);
-INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (2, 'animeLiker@gmail.ru', 'Alfred', '234567', 2, 2);
-INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (3, 'messy@inbox.ru', 'amacrim', '345678', 3, 3);
-INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (4, 'sulmatUUl@bk.ru', 'magIvoin2001', '456789', 4, 4);
-INSERT INTO Users(id, email, login, password, lobby_statistics_id, statistics_id) VALUES (5, 'ZarinM@inbox.ru', 'CARstark', '567890', 5, 5);
+INSERT INTO Users
+(id, email, login, password, lobby_statistics_id, statistics_id, user_image) 
+VALUES 
+(1, 'chda98@bk.ru', 'DimasikAlmazzik', '123456', 1, 1, '1.jpg'),
+(2, 'animeLiker@gmail.ru', 'Alfred', '234567', 2, 2, '2.jpg'),
+(3, 'messy@inbox.ru', 'amacrim', '345678', 3, 3, '3.jpg'),
+(4, 'sulmatUUl@bk.ru', 'magIvoin2001', '456789', 4, 4, '4.jpg'),
+(5, 'ZarinM@inbox.ru', 'CARstark', '567890', 5, 5, '5.jpg'),
+(6, 'admin@inbox.ru', 'admin', 'admin', 6, 6, '6.jpg'),
+(7, 'user@inbox.ru', 'user', 'user', 7, 7, '7.jpg');
 
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (1, 'Java', 'Java vs C++', 'C++(Best of the Best)', 1, 'nizkij flex.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (2, 'Крым русский', 'Крым наш или не наш?', 'Украина', 2, 'slidone.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (3, 'Android', 'Android VS Apple', 'Apple', 3, 'svidetel.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (4, 'Прогрессивный либерализм', 'Либеры против Консерв', 'Тупые консерваторы', 4, 'tupaja_elf.jpg', 603);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (9, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5, 'vanomas.jpg', 603);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (5, 'Java', 'Java vs JS', 'JS', 1, 'nizkij flex.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (6, 'Java', 'Java vs SQL', 'SQL', 1, 'nizkij flex.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (7, 'Java', 'Java vs .NET', 'C++(Best of the Best)', 1, 'nizkij flex.jpg', 601);
-INSERT INTO Themes(id, first_position, name, second_position, creator_id, background_image, sphere_id) VALUES (8, 'Java', 'Java vs Python', 'Python', 1, 'nizkij flex.jpg', 601);
+INSERT INTO 
+Roles(id, roles) 
+VALUES 
+(1,'admin'), (2,'user'), (3,'moderator');
 
-INSERT INTO Roles(id, roles) VALUES (1,'admin');
-INSERT INTO Roles(id, roles) VALUES (2,'user');
-INSERT INTO Roles(id, roles) VALUES (3,'moderator');
+INSERT INTO users_has_roles
+(users_id, roles_id) 
+VALUES 
+(2,2), (1,1), (1,3), (6,1), (7,2);
 
+INSERT INTO themes
+(id, first_position, name, second_position, creator_id, background_image, sphere_id) 
+VALUES 
+(1, 'Java', 'Java vs C++', 'C++(Best of the Best)', 1, 'themes/nizkij flex.jpg', 601),
+(2, 'Крым русский', 'Крым наш или не наш?', 'Украина', 2, 'themes/slidone.jpg', 601),
+(3, 'Android', 'Android VS Apple', 'Apple', 3, 'themes/svidetel.jpg', 601),
+(4, 'Прогрессивный либерализм', 'Либеры против Консерв', 'Тупые консерваторы', 4, 'themes/tupaja_elf.jpg', 603),
+(9, 'Nikes', 'Найки и Adidas!!!', 'Adidas', 5, 'themes/vanomas.jpg', 603),
+(5, 'Java', 'Java vs JS', 'JS', 1, 'themes/nizkij flex.jpg', 601),
+(6, 'Java', 'Java vs SQL', 'SQL', 1, 'themes/nizkij flex.jpg', 601),
+(7, 'Java', 'Java vs .NET', 'C++(Best of the Best)', 1, 'themes/nizkij flex.jpg', 601),
+(8, 'Java', 'Java vs Python', 'Python', 1, 'themes/nizkij flex.jpg', 601);
 
-INSERT INTO users_has_roles(users_id, roles_id) VALUES (2, 2);
-INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 1);
-INSERT INTO users_has_roles(users_id, roles_id) VALUES (1, 3);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 1);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 5);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 6);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 7);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (601, 8);
-
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (101, 2);
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (206, 3);
-INSERT INTO Spheres_Themes(sphere_id, themes_id) VALUES (104, 4);
+INSERT INTO 
+Spheres_Themes(sphere_id, themes_id) 
+VALUES 
+(601, 1), (601, 5), (601, 6), (601, 7), (601, 8), (101, 2), (206, 3), (104, 4);

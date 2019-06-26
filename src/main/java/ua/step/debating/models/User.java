@@ -29,12 +29,13 @@ public class User {
 	private String login;
 	private String password;
 	private String email;
+	private String userImage;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_has_roles", joinColumns = {
 			@JoinColumn(name = "users_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "roles_id", nullable = false, updatable = false) })
-    private List<Role> roles = new ArrayList<Role>();
+	private List<Role> roles = new ArrayList<Role>();
 	@OneToMany
 	private List<Message> messages;
 	@OneToOne
@@ -76,7 +77,6 @@ public class User {
 		this.email = email;
 	}
 
-
 	public List<Message> getMessages() {
 		return messages;
 	}
@@ -115,6 +115,14 @@ public class User {
 
 	public void setStatistics(UserStatistics statistics) {
 		this.statistics = statistics;
+	}
+
+	public String getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
 	}
 
 }
