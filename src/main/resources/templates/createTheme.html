@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Создать новую тему</title>
+</head>
+<body>
+	<div class="container" th:fragment="content">
+		<div class="text-center">
+			<h1>Создание новых тем</h1>
+		</div>
+		<form class="mt-3" th:action="@{/themes/createTheme}"
+			th:object="${Theme}" method="post">
+			<div class="form-group">
+				<label for="name">Название Темы</label> <input type="text"
+					class="form-control" id="name" name="name">
+			</div>
+			<label for="spheres">Подсфера</label> <select class="form-control"
+				id="spheres" name="spheres">
+				<option th:if="${sphere.id > 99}" th:each="sphere : ${spheres}"
+					th:text="${sphere.name}" name="sphere" id="sphere"
+					value="${sphere.id}">
+			</select>
+
+			<div class="form-group">
+				<label for="image">Картинка темы</label>
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="backgroundImage"
+						name="backgroundImage"> <label class="custom-file-label"
+						for="backgroundImage">Выберите файл</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name">Левая позиция</label> <input type="text"
+					class="form-control" id="firstPosition" name="firstPosition">
+			</div>
+			<div class="form-group">
+				<label for="name">Правая позиция</label> <input type="text"
+					class="form-control" id="secondPosition" name="secondPosition">
+			</div>
+
+
+
+			<br>
+			<div class="text-center">
+				<button type="submit"
+					class="form-group btn btn-outline-info btn-lg btn-block">Создать
+					тему</button>
+			</div>
+
+			<script type="text/javascript">
+				$('.selectpicker').selectpicker();
+			</script>
+		</form>
+	</div>
+</body>
+</html>
+

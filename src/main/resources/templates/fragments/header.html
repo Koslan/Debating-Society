@@ -45,9 +45,14 @@
 				<li class="nav-item"><a class="nav-link" href="/themes">Темы</a></li>
 			</ul>
 
-			<a class="nav-link btn btn-info mt-3 mr-3" href="/createDebate">Создать
-				Дебаты</a> <a class="nav-link btn btn-info mt-3 mr-3"
-				href="/inDeveloping">Создать Дискуссию</a>
+			<th:block sec:authorize="isAuthenticated()">
+				<a class="nav-link btn btn-info mt-3 mr-3"
+					href="/themes/createTheme">Создать Тему</a>
+				<a class="nav-link btn btn-info mt-3 mr-3" href="/createDebate">Создать
+					Дебаты</a>
+				<a class="nav-link btn btn-info mt-3 mr-3" href="/inDeveloping">Создать
+					Дискуссию</a>
+			</th:block>
 
 			<!-- Профиль -->
 			<th:block sec:authorize="isAuthenticated()">

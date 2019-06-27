@@ -22,72 +22,67 @@ import ua.step.debating.repositories.UserRepository;
 
 @Controller
 public class ThemeController {
-
 	/*
 	 * 
-	 * @author Bartalev
+	 * @author Bartalev, Buriak
 	 *
 	 */
 	@Autowired
-	private ThemeRepository repoT;
+	private ThemeRepository themeRepository;
+	@Autowired
+	private SphereRepository sphereRepository;
 	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping("/themes")
 	public String getTheme(Model model) {
 		getHeader(model);
-		model.addAttribute("themes", repoT.findAll());
+		model.addAttribute("themes", themeRepository.findAll());
 		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
-	
+
 	@GetMapping("/autoConnect")
 	public String getAutoConnect(Model model) {
-		model.addAttribute("themes", repoT.findAll());
+		model.addAttribute("themes", themeRepository.findAll());
 		getHeader(model);
 		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
-	
+
 	@GetMapping("/themes/{themesId}")
 	public String getThemes(Model model, @PathVariable int themesId) {
-		model.addAttribute("themes", repoT.findAll());
+		model.addAttribute("themes", themeRepository.findAll());
 		getHeader(model);
 		model.addAttribute("themesId", themesId);
 		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
 
-	@GetMapping("/themes/add")
+	@GetMapping("/themes/createTheme")
 	private String getAddTheme(Model model) {
 		getHeader(model);
-		model.addAttribute("contentPage", "addThemes");
+		model.addAttribute("spheres", sphereRepository.findAll());
+		model.addAttribute("themes", themeRepository.findAll());
+		model.addAttribute("contentPage", "createTheme");
 		return "index";
 	}
 
-	@PostMapping("/themes/add") // добавление несуществующей темы, если она уже есть идет перенаправление
-								// на новый ввод темы, иначе она добавляется и идет обновление текущей
-								// страницы themes
-	private String addTheme(@ModelAttribute Theme theme) {
-		boolean isEmpty = true;
-		List<Theme> themes = repoT.findAll();
-		for (int i = 0; i < themes.size(); i++) {
-			if (themes.get(i).getName().equals(theme.getName())) {
-				isEmpty = false;
-			}
-		}
-		if (isEmpty) {
-			repoT.saveAndFlush(theme);
-			return "redirect:/themes";
-		} else {
-			return "redirect:/themes/add";
-		}
+	@PostMapping("/themes/createTheme") // добавление несуществующей темы, если она уже есть идет перенаправление
+	// на новый ввод темы, иначе она добавляется и идет обновление текущей
+	// страницы themes
+	private String createTheme(@ModelAttribute Theme theme) {
+		theme.setCreator(userRepository.getOne(getAuthUserId(userRepository)));
+		theme.setBackgroundImage("themes/" + theme.getBackgroundImage()); // по другому не работает
+		themeRepository.saveAndFlush(theme);
+		return "redirect:/themes";
+
 	}
-	
+
 	@GetMapping(value = "/themes", params = { "search" })
 	private String getSearchTheme(Model model, String search) {
 		int count = 0;
-		List<Theme> themeList = repoT.findAll();
+		List<Theme> themeList = themeRepository.findAll();
 		List<Theme> searchList = null;
 		if (!search.isEmpty() && count == 0) {
 			searchList = new ArrayList<Theme>();
@@ -108,7 +103,7 @@ public class ThemeController {
 		getHeader(model);
 		return "index";
 	}
-	
+
 	private Integer getAuthUserId(UserRepository repo) {
 		Integer id = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

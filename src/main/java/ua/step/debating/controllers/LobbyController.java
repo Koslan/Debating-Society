@@ -49,15 +49,15 @@ public class LobbyController {
 
 	@Autowired
 	private ThemeRepository themeRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
-	private LobbyStatisticsRepository lobbyStatRepo;
-	
+	private LobbyStatisticsRepository lobbyStatisticsRepository;
+
 	@Autowired
-	private UserStatisticsRepository userStatRepo;
+	private UserStatisticsRepository userStatisticsRepository;
 
 	@GetMapping("/lobbies")
 	public String getLobbies(Model model) {
@@ -66,9 +66,8 @@ public class LobbyController {
 		return "lobbies";
 	}
 
-	
 	@GetMapping("/createDebate")
-	public String createDebate(Model model) { 
+	public String createDebate(Model model) {
 		model.addAttribute("contentPage", "createDebate");
 		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("theme", themeRepository.findAll());
@@ -76,20 +75,19 @@ public class LobbyController {
 		return "index";
 	}
 
-
 	@PostMapping("/createDebate")
 	private String addBookSubmit(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Theme") Theme theme,
-			@ModelAttribute("Configuration") Configuration configuration, @ModelAttribute("Sphere") Sphere sphere, @ModelAttribute("spheresId") String sphereId,
-			@ModelAttribute("subSphereId") String subSphereId) {
-	
+			@ModelAttribute("Configuration") Configuration configuration, @ModelAttribute("Sphere") Sphere sphere,
+			@ModelAttribute("spheresId") String sphereId, @ModelAttribute("subSphereId") String subSphereId) {
+
 		lobby.setCreateDate(Calendar.getInstance().getTime());
 		lobby.setActive(true);
-		lobby.setName(theme.getName() + " /n Пользователь1" + " vs " + "Пользователь2" );
+		lobby.setName(theme.getName() + " /n Пользователь1" + " vs " + "Пользователь2");
 		configuration.setTalkType(TalkType.DEBATE);
 		configurationRepository.saveAndFlush(configuration);
 		lobby.setConfig(configuration);
 		lobbyRepository.saveAndFlush(lobby);
-		
+
 		return "redirect:/themes";
 	}
 
@@ -109,57 +107,57 @@ public class LobbyController {
 		getHeader(model);
 		return "timer";
 	}
-	
+
 	@GetMapping("/debateLobby")
 	public String getDebateChat(Model model) {
 		model.addAttribute("contentPage", "debateLobby");
 		getHeader(model);
 		return "index";
 	}
-	
-	/** Следующий метод реализует логику завершения дебатов и обновления соответствующих сущностей */
-	
-	@PostMapping(value = "/debateLobby", params = {"winnerReputation", "loserReputation",
-													"winnerActivity", "loserActivity"})
-	public String finishDebate(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Winner")
-							User winner, @ModelAttribute("Loser")
-							User loser, @ModelAttribute("LobbyStatisticsByWinner")
-							LobbyStatistics lobbyStatisticsByWinner,
-							@ModelAttribute("LobbyStatisticsByLoser")
-							LobbyStatistics lobbyStatisticsByLoser, @ModelAttribute("WinnerStatistics")
-							UserStatistics winnerStatistics, @ModelAttribute("LoserStatistics")
-							UserStatistics loserStatistics, Integer winnerReputation,
-							Integer loserReputation, Integer winnerActivity, Integer loserActivity) {
-		
+
+	/**
+	 * Следующий метод реализует логику завершения дебатов и обновления
+	 * соответствующих сущностей
+	 */
+
+	@PostMapping(value = "/debateLobby", params = { "winnerReputation", "loserReputation", "winnerActivity",
+			"loserActivity" })
+	public String finishDebate(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Winner") User winner,
+			@ModelAttribute("Loser") User loser,
+			@ModelAttribute("LobbyStatisticsByWinner") LobbyStatistics lobbyStatisticsByWinner,
+			@ModelAttribute("LobbyStatisticsByLoser") LobbyStatistics lobbyStatisticsByLoser,
+			@ModelAttribute("WinnerStatistics") UserStatistics winnerStatistics,
+			@ModelAttribute("LoserStatistics") UserStatistics loserStatistics, Integer winnerReputation,
+			Integer loserReputation, Integer winnerActivity, Integer loserActivity) {
+
 		lobby.setActive(false); // Данное лобби становится не активным после окончания беседы
-		
-		winner.getLobbies().add(lobby); 
+
+		winner.getLobbies().add(lobby);
 		loser.getLobbies().add(lobby);
-		
+
 		lobbyStatisticsByWinner.getListOfLobbyDebat().add(lobby);
 		lobbyStatisticsByLoser.getListOfLobbyDebat().add(lobby);
-		
+
 		winnerStatistics.setActivity(winnerReputation);
 		winnerStatistics.setActivity(winnerActivity);
-		
+
 		loserStatistics.setActivity(loserReputation);
 		loserStatistics.setActivity(loserActivity);
-		
+
 		lobbyRepository.saveAndFlush(lobby);
-		
+
 		userRepository.saveAndFlush(winner);
 		userRepository.saveAndFlush(loser);
-		
-		lobbyStatRepo.saveAndFlush(lobbyStatisticsByWinner);
-		lobbyStatRepo.saveAndFlush(lobbyStatisticsByLoser);
-		
-		userStatRepo.saveAndFlush(winnerStatistics);
-		userStatRepo.saveAndFlush(loserStatistics);
-		
-		
-		return "redirect:/debateLobby";	
-	}	
-	
+
+		lobbyStatisticsRepository.saveAndFlush(lobbyStatisticsByWinner);
+		lobbyStatisticsRepository.saveAndFlush(lobbyStatisticsByLoser);
+
+		userStatisticsRepository.saveAndFlush(winnerStatistics);
+		userStatisticsRepository.saveAndFlush(loserStatistics);
+
+		return "redirect:/debateLobby";
+	}
+
 	private Integer getAuthUserId(UserRepository repo) {
 		Integer id = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
