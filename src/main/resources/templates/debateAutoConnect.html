@@ -3,7 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Создать дебаты</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+<meta charset="UTF-8">
+<title>Поиск аппонента</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -22,112 +26,77 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<script src="/js/datatable.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<script
+	src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="/js/datatable.js"></script>
 </head>
-<body>
-	<link rel="stylesheet" href="/css/themes.css">
-	<div class="container" th:fragment="content"
-		th:with="choosenSphere=${spheres[0]}">
-		<div class="text-center">
-			<h1>Присоедениться к дебатам</h1>
-		</div>
-		<form class="mt-3" th:action="@{/createDebate}" th:object="${lobby}"
-			method="post">
-			<div class="card">
 
+<body th:fragment="content" onload="myFunction()" style="margin: 0;">
+	<div>
+		<link rel="stylesheet" href="/css/timer.css">
 
-				<div class="card-body" th:each="themes : ${themes}" >
-					<p class="h3 name card-title" th:text="${themes.name}"></p>
+		<div style="height: 900px" th:fragment="content">
 
-					<div class="text-center">
-						<img th:src="@{${'../images/'+themes.backgroundImage}}"
-							alt="Картинка" class="img-thumbnail">
+			<!-- Круглая иконка загрузки -->
+			<div style="margin-top: 100px" id="loader"></div>
+
+			<div>
+				<div class="text-center">
+					<h4>По вашему запросу идет поиск оппонента для дебатов на тему</h4>
+
+					<div th:if="${theme.id == themesId}" class="text-center"
+						th:each="theme : ${themes}">
+						<h4 class="text-center" th:text="${theme.name}"></h4>
 					</div>
 
-					<div class="text-center">Выберите сторону для дебатов</div>
-					<div class="positions h4">
-						<a th:href="@{'/autoConnect/'+${themes.firstPosition}}" class="card-text"
-							th:text="${themes.firstPosition}"></a> <a
-							th:href="@{'/autoConnect/'+${themes.secondPosition}}" th:text="${themes.secondPosition}"></a>
+					<div th:if="${themes.id == themesId}" class="card-body"
+						th:each="themes : ${themes}">
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'../images/'+themes.backgroundImage}}"
+								alt="Картинка" class="img-thumbnail">
+						</div>
+					</div>
+					<!-- Круглая иконка загрузки -->
+
+					<div style="display: none;" id="myDiv" class="animate-bottom">
+						<h4>Внимание!</h4>
+						<h4>Найден оппонент - DimasikAlmazzik</h4>
+						<br>
+						<h4>Основные конфигурации</h4>
+						<h6>Ваша позиция - Java</h6>
+						<h6>Общее время дебатов - 60 мин</h6>
+						<h6>Время на написание аргумента - 3 мин</h6>
+						<h6>Количество баллов за победу - 30</h6>
+						<h6>Цензура - включена</h6>
+						<br>
+						<button type="button" class="btn btn-success">Начать
+							дебаты</button>
 					</div>
 
+					<script>
+						var myVar;
 
-					<!-- <div class="form-group">
-				<label for="spheres">Сфера</label> <select class="form-control"
-					id="spheres" name="spheres">
-					<option th:if="${sphere.id < 99}" th:each="sphere : ${spheres}" th:value="${sphere.id}"
-						th:text="${sphere.name}" th:with="choosenSphere=${sphere}">
-						
-				</select>
-			</div> -->
+						function myFunction() {
+							myVar = setTimeout(showPage, 3000);
+						}
 
-
-					<!-- <div class="form-group">
-				<label for="spheres">Подсфера</label>
-				<select class="form-control"
-					id="spheres" name="spheres">
-				<option  th:each="child : ${choosenSphere.children}" th:text="${child.name}">
-					
-				</select>
-			</div> -->
-
-
-
-
-
-
-					<!-- <div class="form-group">
-				<label for="name">Длительность дебатов (в минутах)</label> <input
-					type="number" class="form-control" aria-label="Минуты" id="generalTime" name="generalTime">
-			</div>
-			
-			<div class="form-group">
-				<label for="name">Таймаут (в минутах)</label> <input type="number"
-					class="form-control" aria-label="Минуты" id="timeoutTime" name="timeoutTime"> <small
-					id="yearHelp" class="form-text text-muted">Таймаут - время
-					ожидания ответа спикера. За отсутсвие ответа за время таймера -
-					последует штраф к репутации спикера. </small>
-			</div>
-			
-			<div class="form-group">
-				<label for="name">Штраф</label> <input type="number"
-					class="form-control" id="timeoutFine" name="timeoutFine">
-			</div>
-			
-			<div class="form-check">
-				<label class="form-check-label"> <input type="checkbox"
-					class="form-check-input" id="isCensorship"  name="isCensorship">Цензура
-				</label> <small id="yearHelp" class="form-text text-muted">Возможно
-					ли использовать нецензурную лексику</small>
-			</div>
-			
-			<div class="form-check">
-				<label class="form-check-label"> <input type="checkbox"
-					class="form-check-input" id="isSpectatorChatVisible"  name="isSpectatorChatVisible">Видимость зрительского
-					чата
-				</label> <small id="yearHelp" class="form-text text-muted">Видят ли
-					спикеры зрительский чат</small>
-
-			</div>-->
-
-					<!-- 	<br>
-			<div class="text-center">
-				<button type="submit"
-					class="form-group btn btn-outline-info btn-lg  btn-block">Создать
-					дебаты</button>
-			</div> 
-			
-			
-			<br>
-			<div class="text-center">
-				<button type="submit"
-					class="form-group btn btn-outline-info btn-lg  btn-block">Создать
-					дискуссию</button>
-			</div> -->
+						function showPage() {
+							document.getElementById("loader").style.display = "none";
+							document.getElementById("myDiv").style.display = "block";
+						}
+					</script>
 
 					<script type="text/javascript">
 						$('.selectpicker').selectpicker();
 					</script>
-		</form>
-	</div>
+				</div>
 </body>
 </html>

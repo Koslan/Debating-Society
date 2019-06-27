@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ua.step.debating.models.Configuration;
@@ -91,12 +92,12 @@ public class LobbyController {
 		return "redirect:/themes";
 	}
 
-	@GetMapping("/debateAutoConnect/{id}")
-	public String getOpponent(Model model) {
+	@GetMapping("/debateAutoConnect/{themesId}")
+	public String getOpponent(Model model, @PathVariable int themesId) {
 		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("themes", themeRepository.findAll());
+		model.addAttribute("themesId", themesId);
 		model.addAttribute("contentPage", "debateAutoConnect");
-		getHeader(model);
 		return "index";
 	}
 
