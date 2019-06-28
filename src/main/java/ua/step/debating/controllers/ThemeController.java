@@ -52,9 +52,8 @@ public class ThemeController {
 
 	@GetMapping("/themes/{themesId}")
 	public String getThemes(Model model, @PathVariable int themesId) {
-		model.addAttribute("themes", themeRepository.findAll());
+		model.addAttribute("themes", themeRepository.getOne(themesId));
 		getHeader(model);
-		model.addAttribute("themesId", themesId);
 		model.addAttribute("contentPage", "themes");
 		return "index";
 	}
@@ -68,13 +67,40 @@ public class ThemeController {
 		return "index";
 	}
 
-	@PostMapping("/themes/createTheme") // добавление несуществующей темы, если она уже есть идет перенаправление
-	// на новый ввод темы, иначе она добавляется и идет обновление текущей
-	// страницы themes
+	/**
+	 * Создает новую тему. Название берет из 2 позиций
+	 */
+	@PostMapping("/themes/createTheme") 
 	private String createTheme(@ModelAttribute Theme theme) {
+		String themeName = "";
+		int check = theme.getFirstPosition().compareToIgnoreCase(theme.getSecondPosition());
+		if (check <= -1) {
+			themeName =theme.getFirstPosition() + " vs " + theme.getSecondPosition();
+		} else if (check >= 1) {
+			// инверсия позиций(если название, например, "б vs а" то позиции поменяются местами)
+			String position1 = theme.getFirstPosition();
+			String position2 = theme.getSecondPosition();
+			theme.setFirstPosition(position2);
+			theme.setSecondPosition(position1);
+			themeName = theme.getSecondPosition() + " vs " + theme.getFirstPosition();
+		} else {
+			return "redirect:/themes/theSamePositionError";
+		}
+
+		if (themeName.length() < 2) {
+			return "redirect:/themes/isExistTheme";
+		} else {
+			for (Theme themeOne : themeRepository.findAll()) {
+				if (themeOne.getName().equalsIgnoreCase(themeName)) {
+					return "redirect:/themes/" + themeOne.getId();
+				}
+			}
+			theme.setName(themeName);
+		}
+
 		theme.setCreator(userRepository.getOne(getAuthUserId(userRepository)));
 		theme.setBackgroundImage("themes/" + theme.getBackgroundImage()); // по другому не работает
-		themeRepository.saveAndFlush(theme);
+		themeRepository.save(theme);
 		return "redirect:/themes";
 
 	}
@@ -128,5 +154,4 @@ public class ThemeController {
 			model.addAttribute("activity", 0);
 		}
 	}
-
 }
