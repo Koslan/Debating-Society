@@ -34,6 +34,13 @@ public class MainController {
 		model.addAttribute("contentPage", "inDeveloping");
 		return "index";
 	}
+	
+	@GetMapping("/themes/theSamePositionError")
+	private String getTheSamePositionError(Model model) {
+		getHeader(model);
+		model.addAttribute("contentPage", "theSamePositionError");
+		return "index";
+	}
 
 	private Integer getAuthUserId(UserRepository repo) {
 		Integer id = null;

@@ -82,7 +82,7 @@ public class ThemeController {
 			String position2 = theme.getSecondPosition();
 			theme.setFirstPosition(position2);
 			theme.setSecondPosition(position1);
-			themeName = theme.getSecondPosition() + " vs " + theme.getFirstPosition();
+			themeName = theme.getFirstPosition() + " vs " + theme.getSecondPosition();
 		} else {
 			return "redirect:/themes/theSamePositionError";
 		}

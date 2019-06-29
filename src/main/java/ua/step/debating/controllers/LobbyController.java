@@ -1,6 +1,8 @@
 package ua.step.debating.controllers;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 @Controller
 public class LobbyController {
-
 	@Autowired
 	private LobbyRepository lobbyRepository;
 
@@ -79,11 +80,22 @@ public class LobbyController {
 	@PostMapping("/createDebate")
 	private String addBookSubmit(@ModelAttribute("Lobby") Lobby lobby, @ModelAttribute("Theme") Theme theme,
 			@ModelAttribute("Configuration") Configuration configuration, @ModelAttribute("Sphere") Sphere sphere,
-			@ModelAttribute("spheresId") String sphereId, @ModelAttribute("subSphereId") String subSphereId) {
+			@ModelAttribute("spheresId") String sphereId, @ModelAttribute("subSphereId") String subSphereId,
+			@ModelAttribute("User") User user, @ModelAttribute("userPosition") String userPosition) {
 
 		lobby.setCreateDate(Calendar.getInstance().getTime());
 		lobby.setActive(true);
 		lobby.setName(theme.getName() + " /n Пользователь1" + " vs " + "Пользователь2");
+
+		// Добавление пользователя в на ту сторону которую он выбрал
+		List<User> userSide = new ArrayList<User>();
+		userSide.add(userRepository.getOne(getAuthUserId()));
+		if (userPosition.equals("position2")) {
+			lobby.setSecondSide(userSide);
+		} else {
+			lobby.setFirstSide(userSide);
+		}
+
 		configuration.setTalkType(TalkType.DEBATE);
 		configurationRepository.saveAndFlush(configuration);
 		lobby.setConfig(configuration);
@@ -159,19 +171,19 @@ public class LobbyController {
 		return "redirect:/debateLobby";
 	}
 
-	private Integer getAuthUserId(UserRepository repo) {
+	private Integer getAuthUserId() {
 		Integer id = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		if (!name.equals("anonymousUser")) {
-			Optional<User> user = repo.findByLogin(name);
+			Optional<User> user = userRepository.findByLogin(name);
 			id = user.get().getId();
 		}
 		return id;
 	}
 
 	private void getHeader(Model model) {
-		Integer idUs = getAuthUserId(userRepository);
+		Integer idUs = getAuthUserId();
 		if (idUs != null) {
 			User user = userRepository.findById(idUs).orElse(new User());
 			model.addAttribute("image", user.getUserImage());
