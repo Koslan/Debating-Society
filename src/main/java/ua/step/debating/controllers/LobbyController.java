@@ -67,6 +67,29 @@ public class LobbyController {
 		getHeader(model);
 		return "lobbies";
 	}
+	
+	/**
+	 * @author Vitaliy
+	 * @param model
+	 * @param themesId
+	 * @return Данный метод используется для вывода списка активных lobby
+	 * 
+	 */
+	@GetMapping("/lobbies/{themesId}")
+	public String getLobbiesByTheme(Model model, @PathVariable int themesId) {
+		List<Lobby> lobbiesRepository = lobbyRepository.findAll();
+		List<Lobby> lobbiesByTheme = new ArrayList<Lobby>();
+		for (Lobby lobby : lobbiesRepository) {
+			if (lobby.getTheme().getId() == themesId) {
+				lobbiesByTheme.add(lobby);
+			}
+		}
+		model.addAttribute("lobbies", lobbiesByTheme); 
+		model.addAttribute("themes", themeRepository.getOne(themesId)); 
+		model.addAttribute("contentPage", "lobbies");
+		getHeader(model);
+		return "index";
+	}
 
 	@GetMapping("/createDebate")
 	public String createDebate(Model model) {

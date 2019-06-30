@@ -21,10 +21,44 @@
 	crossorigin="anonymous"></script>
 </head>
 <body th:fragment="content">
-	<div  class="alert alert-dark" th:each="lobby : ${lobbies}">
-		<a th:href="@{'/lobbies/'+${lobby.id}}" th:text="${lobby.name}"></a>
-		<span th:text="${lobby.id}"></span>
-		<span th:text="${lobby.active}"></span>
+	<div class="text-center">
+		<h3>Список активных дедатов на тему</h3>
+		<h3 th:text="${themes.name}"></h3>
 	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Название</th>
+				<!-- <th scope="col">Свободная сторона для участия</th> -->
+				<th scope="col">Общее время</th>
+				<th scope="col">Время на написание аргумента</th>
+				<th scope="col">Штраф</th>
+				<th scope="col">Видимость зрительского чата</th>
+				<th scope="col">Цензура</th>
+				<th scope="col">Количество баллов за победу</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+			<tr th:each="lobby : ${lobbies}">
+				<td th:text="${lobby.id}"></td>
+				<td th:text="${lobby.name}"></td>
+				<!-- <div th:eath="${side : lobby.}"
+				<td th:text="${lobby.name}"></td> -->
+				<td th:text="${lobby.config.generalTime}"></td>
+				<td th:text="${lobby.config.timeoutTime}"></td>
+				<td th:text="${lobby.config.timeoutFine}"></td>
+				<td th:if="${lobby.config.isSpectatorChatVisible}">включена</td>
+				<td th:if="${!lobby.config.isSpectatorChatVisible}">выключена</td>
+				<td th:if="${lobby.config.isCensorship}">включена</td>
+				<td th:if="${!lobby.config.isCensorship}">выключена</td>
+				<td>200 in developing</td>
+				<!-- <td th:text="${lobby.config.isSpectatorChatVisible}">in developing</td> -->
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

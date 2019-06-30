@@ -46,10 +46,11 @@
 
 				<div class="card-body">
 					<div class="text-center">
-						<a class="h3 name card-title" th:text="${themes.name}"></a>
-						<!-- <a class="h3 name card-title" th:href="@{'/debateAutoConnect/'+${themes.id}}"
-							th:text="${themes.name}"></a> -->
+						<!-- <a class="h3 name card-title" th:text="${themes.name}"></a> -->
+						<a style="text-align:center" class="h3 name card-title" th:href="@{'/lobbies/'+${themes.id}}"
+							th:text="${themes.name}"></a>
 					</div>
+					
 					<div class="positions h4">
 						<a class="card-text"
 							th:href="@{'/debateAutoConnect/'+${themes.id}+'/'+${themes.firstPosition}}"

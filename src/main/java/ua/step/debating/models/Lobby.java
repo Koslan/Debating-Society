@@ -24,7 +24,10 @@ public class Lobby {
 	private String name;
 	@OneToOne
 	private Theme theme;
+	
 	private Date createDate;
+
+	private Date startDate;
 	
 	@ManyToMany
 	private List<User> firstSide = new ArrayList<User>();
@@ -140,6 +143,14 @@ public class Lobby {
 
 	public void setWinners(List<User> winners) {
 		this.winners = winners;
+	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 }
 
