@@ -1,5 +1,6 @@
 package ua.step.debating.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,32 +21,32 @@ public class LobbyStatistics {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	private Integer debatCount;
+	private Integer debatCount = 0;
 	
-	private Integer discussionCount;
-	
-	@ManyToMany
-	private List<Lobby> listOfLobbyDebat;
+	private Integer discussionCount = 0;
 	
 	@ManyToMany
-	private List<Lobby> listOfLobbyDiscussion;
+	private List<Lobby> listOfLobbyDebat = new ArrayList<Lobby>();
+	
+	@ManyToMany
+	private List<Lobby> listOfLobbyDiscussion = new ArrayList<Lobby>();
 	
 	@OneToMany
-	private List<Lobby> listOfMyCreatedDebat; //список дискуссий которые я создал;
+	private List<Lobby> listOfMyCreatedDebat = new ArrayList<Lobby>(); //список дискуссий которые я создал;
 	
 	@OneToMany
-	private List<Lobby> listOfMyCreatedDiscussion; //список дебатов которые я создал;
+	private List<Lobby> listOfMyCreatedDiscussion = new ArrayList<Lobby>(); //список дебатов которые я создал;
 	
 	@OneToMany
-	private List<Message> message;
+	private List<Message> message = new ArrayList<Message>();
 	
 	@OneToMany
-	private List<User> listOfSpendedPointsForUsers;  // список на что я потратил баллов
+	private List<User> listOfSpendedPointsForUsers = new ArrayList<User>();  // список на что я потратил баллов
 	
 	@OneToMany
-	private List<Message> listOfSpendedPointsForMessage;  // список на что я потратил баллы
+	private List<Message> listOfSpendedPointsForMessage = new ArrayList<Message>();;  // список на что я потратил баллы
 	
-	LobbyStatistics() {}
+	public LobbyStatistics() {}
 	
 	public Integer getDebatCount() {
 		return debatCount;

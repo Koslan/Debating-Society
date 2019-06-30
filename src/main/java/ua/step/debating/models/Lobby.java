@@ -1,5 +1,6 @@
 package ua.step.debating.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,27 +27,24 @@ public class Lobby {
 	private Date createDate;
 	
 	@ManyToMany
-	private List<User> firstSide;
+	private List<User> firstSide = new ArrayList<User>();
 	
 	@ManyToMany
-	private List<User> secondSide;
+	private List<User> secondSide = new ArrayList<User>();
 	
 	@ManyToMany
-	private List<User> spectators;
-	
+	private List<User> spectators = new ArrayList<User>();
 	@OneToMany
-	private List<Message> firstSideMessages;
-	
+	private List<Message> firstSideMessages = new ArrayList<Message>();
 	@OneToMany
-	private List<Message> secondSideMessages;
+	private List<Message> secondSideMessages = new ArrayList<Message>();
 	
 	@OneToOne
 	private Configuration config;
-	
 	private Boolean active;
 	
 	@ManyToMany
-	private List<User> winners;
+	private List<User> winners = new ArrayList<User>();
 
 	public Integer getId() {
 		return id;

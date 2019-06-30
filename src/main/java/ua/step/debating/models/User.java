@@ -109,11 +109,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public UserStatistics getStatistics() {
+	public UserStatistics getUserStatistics() {
 		return statistics;
 	}
 
-	public void setStatistics(UserStatistics statistics) {
+	public void setUserStatistics(UserStatistics statistics) {
 		this.statistics = statistics;
 	}
 

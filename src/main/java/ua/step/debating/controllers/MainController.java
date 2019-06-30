@@ -58,8 +58,8 @@ public class MainController {
 		if (idUs != null) {
 			User user = userRepository.findById(idUs).orElse(new User());
 			model.addAttribute("image", user.getUserImage());
-			model.addAttribute("reputation", user.getStatistics().getReputation());
-			model.addAttribute("activity", user.getStatistics().getActivity());
+			model.addAttribute("reputation", user.getUserStatistics().getReputation());
+			model.addAttribute("activity", user.getUserStatistics().getActivity());
 		} else {
 			model.addAttribute("image", "");
 			model.addAttribute("reputation", 0);

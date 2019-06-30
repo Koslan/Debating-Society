@@ -36,7 +36,7 @@ public class UserStatistics {
 	@OneToMany
 	private List<Theme> listOfUserTopics; // список тем которые пользователь создал;
 	
-	UserStatistics() {}
+	public UserStatistics() {}
 	
 	public Integer getReputation() {
 		return reputation;
