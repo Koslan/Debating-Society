@@ -132,5 +132,26 @@ h6{
 	color: #0fa3ba;
 	 align: center;
 }
+div.line {
+	
+display: inline-block;
 
+}
+
+div.config {
+	
+	text-align: center;
+	color: #0fa3ba;
+	font-weight:bold;
+	
+	
+}
+div.row {
+	
+	text-align: center;
+	color: #0fa3ba;
+	font-weight:bold;
+	
+	
+}
 

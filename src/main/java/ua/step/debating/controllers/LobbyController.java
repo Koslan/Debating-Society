@@ -104,12 +104,62 @@ public class LobbyController {
 		return "redirect:/themes";
 	}
 
-	@GetMapping("/debateAutoConnect/{themesId}")
-	public String getOpponent(Model model, @PathVariable int themesId) {
-		model.addAttribute("spheres", sphereRepository.findAll());
-		model.addAttribute("themes", themeRepository.findAll());
-		model.addAttribute("themesId", themesId);
-		model.addAttribute("contentPage", "debateAutoConnect");
+	/**
+	 * @author Vitaliy
+	 * @param model
+	 * @param themesId
+	 * @return Данный метод используется при поиске оппонента
+	 * 
+	 */
+	@GetMapping("/debateAutoConnect/{themesId}/{position}")
+	public String getOpponent(Model model, @PathVariable int themesId, @PathVariable String position) {
+		List<Lobby> lobbiesRepository = lobbyRepository.findAll();
+		List<Lobby> lobbies = new ArrayList<Lobby>();
+		List<User> loginOponent = new ArrayList<User>();
+		int side = 0;
+
+		for (Lobby lobby : lobbiesRepository) {
+			if (lobby.getActive() && lobby.getTheme().getId().equals(themesId)) {
+				System.out.println("one" + lobby.toString());
+				if (lobby.getTheme().getFirstPosition().equalsIgnoreCase(position)) {
+					if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
+						side = 1;
+						loginOponent = lobby.getSecondSide();
+						lobbies.add(lobby);
+						;
+						break;
+					}
+				}
+
+				if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
+					System.out.println("two" + lobby.toString());
+					if (lobby.getSecondSide().size() == 0 && lobby.getFirstSide().size() > 0) {
+						side = 2;
+						loginOponent = lobby.getFirstSide();
+						lobbies.add(lobby);
+						System.out.println("two" + lobby.toString());
+						break;
+					}
+				}
+			}
+		}
+
+		if (side > 0) {
+			model.addAttribute("configuration", lobbies.get(0).getConfig());
+			model.addAttribute("spheres", sphereRepository.findAll());
+			model.addAttribute("lobby", lobbies.get(0));
+			model.addAttribute("themes", themeRepository.getOne(themesId));
+			model.addAttribute("themesId", themesId);
+			model.addAttribute("position", position);
+			model.addAttribute("loginOponent", loginOponent);
+			model.addAttribute("contentPage", "debateAutoConnect");
+		} else {
+			model.addAttribute("themes", themeRepository.getOne(themesId));
+			model.addAttribute("themesId", themesId);
+			model.addAttribute("position", position);
+			model.addAttribute("contentPage", "fragments/invalidRequestAutoConnect");
+		}
+		getHeader(model);
 		return "index";
 	}
 

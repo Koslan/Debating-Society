@@ -39,7 +39,7 @@
 </head>
 
 <body th:fragment="content" onload="myFunction()" style="margin: 0;">
-	<div>
+	<div class="container" th:fragment="content">
 		<link rel="stylesheet" href="/css/timer.css">
 
 		<div style="height: 900px" th:fragment="content">
@@ -56,29 +56,89 @@
 						<h4 class="text-center" th:text="${theme.name}"></h4>
 					</div>
 
-					<div th:if="${themes.id == themesId}" class="card-body"
-						th:each="themes : ${themes}">
+					<div th:if="${theme.id == themesId}" class="card-body"
+						th:each="theme : ${themes}">
 						<div class="text-center">
 							<img width="200" height="200"
-								th:src="@{${'../images/'+themes.backgroundImage}}"
-								alt="Картинка" class="img-thumbnail">
+								th:src="@{${'~/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail">
 						</div>
 					</div>
-					<!-- Круглая иконка загрузки -->
 
+					<!-- Круглая иконка загрузки -->
 					<div style="display: none;" id="myDiv" class="animate-bottom">
 						<h4>Внимание!</h4>
-						<h4>Найден оппонент - DimasikAlmazzik</h4>
+
+						<h6 class="text-center" th:each="oponent : ${loginOponent}">
+							Найден оппонент - <span class="text-center"
+								th:text="${oponent.login}"></span>
+						</h6>
+
+						<h6 th:if="${themes.firstPosition != position}"
+							class="text-center">
+							Позиция оппонента - <span class="text-center"
+								th:text="${themes.firstPosition}"></span>
+						</h6>
+
+						<h6 th:if="${themes.secondPosition != position}"
+							class="text-center">
+							Позиция оппонента - <span class="text-center"
+								th:text="${themes.secondPosition}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Ваша позиция - <span class="text-center" th:text="${position}"></span>
+						</h6>
 						<br>
+
 						<h4>Основные конфигурации</h4>
-						<h6>Ваша позиция - Java</h6>
-						<h6>Общее время дебатов - 60 мин</h6>
-						<h6>Время на написание аргумента - 3 мин</h6>
-						<h6>Количество баллов за победу - 30</h6>
-						<h6>Цензура - включена</h6>
+
+						<h6 class="text-center">
+							Название дебатов - <span class="text-center"
+								th:text="${lobby.name}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Общее время дебатов (минут) - <span class="text-center"
+								th:text="${configuration.generalTime}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Время на написание аргумента (минут) - <span class="text-center"
+								th:text="${configuration.timeoutTime}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Штраф - <span class="text-center"
+								th:text="${configuration.timeoutFine}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Видимость зрительского чата - <span
+								th:if="${configuration.isSpectatorChatVisible}"
+								class="text-center"> включена</span> <span
+								th:if="${!configuration.isSpectatorChatVisible}"
+								class="text-center"> выключена</span>
+						</h6>
+
+						<h6 class="text-center">
+							Цензура - <span th:if="${configuration.isCensorship}"
+								class="text-center"> включена</span> <span
+								th:if="${!configuration.isCensorship}" class="text-center">
+								выключена</span>
+						</h6>
+
+						<!-- Добавить позже -->
+						<h6 class="text-center">
+							Количество баллов за победу - 120 (добавить) <span
+								class="text-center"
+								th:text="${configuration.isSpectatorChatVisible}"></span>
+						</h6>
+
 						<br>
 						<button type="button" class="btn btn-success">Начать
 							дебаты</button>
+
 					</div>
 
 					<script>

@@ -33,13 +33,16 @@ public class Lobby {
 	
 	@ManyToMany
 	private List<User> spectators;
+	
 	@OneToMany
 	private List<Message> firstSideMessages;
+	
 	@OneToMany
 	private List<Message> secondSideMessages;
 	
 	@OneToOne
 	private Configuration config;
+	
 	private Boolean active;
 	
 	@ManyToMany

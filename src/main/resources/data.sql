@@ -39,7 +39,6 @@ INSERT INTO Spheres(id, name, parent_id) VALUES (604, 'SQL', 6);
 INSERT INTO Spheres(id, name, parent_id) VALUES (605, '.NET', 6);
 INSERT INTO Spheres(id, name, parent_id) VALUES (606, 'Python', 6);
 
-
 INSERT INTO 
 User_Statistics(id, activity, reputation) 
 VALUES 
@@ -87,6 +86,47 @@ VALUES
 (8, 'Java', 'Java vs Python', 'Python', 1, 'themes/nizkij flex.jpg', 601);
 
 INSERT INTO 
-Spheres_Themes(sphere_id, themes_id) 
-VALUES 
+Spheres_Themes
+(sphere_id, themes_id) 
+VALUES
 (601, 1), (601, 5), (601, 6), (601, 7), (601, 8), (101, 2), (206, 3), (104, 4);
+
+INSERT INTO Configurations
+(id, general_time, is_spectator_chat_visible, talk_type, timeout_fine, timeout_time, is_censorship)
+VALUES
+(1, 60, 'true', 1, 10, 3, 'true'),
+(2, 120, 'true', 1, 15, 10, 'true'),
+(3, 180, 'true', 1, 25, 20, 'true');
+
+INSERT INTO Lobbies 
+(id, active , name, config_id, theme_id)
+VALUES 
+(1, 'true', 'Java8', 1, 1),
+(11, 'true', 'Java8', 2, 1),
+(21, 'true', 'Java8', 3, 1),
+(2, 'true', 'Java9', 2, 2),
+(3, 'true', 'Java1', 2, 3),
+(4, 'true', 'Java2', 2, 4),
+(5, 'true', 'Java3', 2, 5),
+(6, 'true', 'Java4', 2, 6),
+(7, 'true', 'Java5', 2, 7),
+(8, 'true', 'Java10', 3, 8);
+
+INSERT INTO lobbies_first_side 
+(lobby_id, first_side_id)
+VALUES 
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 1);
+
+
+INSERT INTO lobbies_second_side 
+(lobby_id, second_side_id)
+VALUES 
+(11, 2),
+(21, 5);
