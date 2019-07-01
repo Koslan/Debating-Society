@@ -128,5 +128,8 @@ VALUES
 INSERT INTO lobbies_second_side 
 (lobby_id, second_side_id)
 VALUES 
+(1, 3),
+(2, 5),
+(3, 4),
 (11, 2),
 (21, 5);

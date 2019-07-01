@@ -31,30 +31,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**", "/debatersChat", "/themes", "/inDeveloping", "/index", "/header", "/timer",
 						"/spheres", "/subspheres", "/registration", "/login", "/h2-console/**", "registration")
 				.permitAll()
-				.antMatchers("/debateLobby", "/autoConnect", "/debateAutoConnect", "/themes/createTheme", "/themes/theSamePositionError").hasAuthority("ROLE_user")
-				.anyRequest().fullyAuthenticated().and().exceptionHandling().accessDeniedPage("/login").and()
-				.formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and().logout()
-				.logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/login").permitAll();
+				.antMatchers("/debateLobby/**", "/autoConnect", "/debateAutoConnect/**", "/themes/createTheme",
+						"/themes/theSamePositionError")
+				.hasAuthority("ROLE_user").anyRequest().fullyAuthenticated().and().exceptionHandling()
+				.accessDeniedPage("/login").and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
+				.and().logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/login")
+				.permitAll();
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 	}
 
 	/**
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/**", "/themes", "/index", "/header", "/timer", "/spheres", "/registration",
-						"/debatersChat", "/debateSpectatorsChat", "/invalidRequest", "/autoConnect", "/debateLobby",
-						 "/login", "/subspheres", "/themes")
-				.permitAll().antMatchers("/authors/add").hasAuthority("ROLE_admin")
-				.antMatchers("/autoConnect", "/debateAutoConnect", "").hasAuthority("ROLE_user").anyRequest()
-				.fullyAuthenticated().and().exceptionHandling().accessDeniedPage("/login").and().formLogin()
-				.loginPage("/login").failureUrl("/login?error").permitAll().and().logout().logoutUrl("/logout")
-				.deleteCookies("remember-me").logoutSuccessUrl("/login").permitAll();
-		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-	}
+	 * @Override protected void configure(HttpSecurity http) throws Exception {
+	 *           http.authorizeRequests() .antMatchers("/**", "/themes", "/index",
+	 *           "/header", "/timer", "/spheres", "/registration", "/debatersChat",
+	 *           "/debateSpectatorsChat", "/invalidRequest", "/autoConnect",
+	 *           "/debateLobby", "/login", "/subspheres", "/themes")
+	 *           .permitAll().antMatchers("/authors/add").hasAuthority("ROLE_admin")
+	 *           .antMatchers("/autoConnect", "/debateAutoConnect",
+	 *           "").hasAuthority("ROLE_user").anyRequest()
+	 *           .fullyAuthenticated().and().exceptionHandling().accessDeniedPage("/login").and().formLogin()
+	 *           .loginPage("/login").failureUrl("/login?error").permitAll().and().logout().logoutUrl("/logout")
+	 *           .deleteCookies("remember-me").logoutSuccessUrl("/login").permitAll();
+	 *           http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+	 *           }
 	 */
-	
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());

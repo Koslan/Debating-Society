@@ -61,7 +61,7 @@
 						<div class="text-center">
 							<img width="200" height="200"
 								th:src="@{${'~/images/'+theme.backgroundImage}}" alt="Картинка"
-								class="img-thumbnail">
+								class="img-thumbnail ml-3">
 						</div>
 					</div>
 
@@ -70,7 +70,7 @@
 						<h4>Внимание!</h4>
 
 						<h6 class="text-center" th:each="oponent : ${loginOponent}">
-							Найден оппонент - <span class="text-center"
+							Найден оппонент- <span class="text-center"
 								th:text="${oponent.login}"></span>
 						</h6>
 
@@ -136,8 +136,10 @@
 						</h6>
 
 						<br>
-						<button type="button" class="btn btn-success">Начать
-							дебаты</button>
+						<!-- <button type="button" class="btn btn-success">Начать
+							дебаты</button> -->
+						<a class="nav-link btn btn-info mt-3 mr-3"
+							th:href="@{'/debateLobby/'+${lobby.id}}">Создать Дебаты</a>
 
 					</div>
 

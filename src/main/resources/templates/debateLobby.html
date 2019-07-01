@@ -28,12 +28,14 @@
 
 <body>
 	<div class="speach-zone" style="height: 900px" th:fragment="content">
-	<link rel="stylesheet" href="/css/debateLobby.css">
-	
-	<div th:insert="fragments/debatersChat :: debatersChat">Chat of Speakers</div>
-	<div th:insert="fragments/debateSpectatorsChat :: spectatorsChat">Chat of Spectators</div>
-	
+		<link rel="stylesheet" href="/css/debateLobby.css">
+
+		<div th:insert="fragments/debatersChat :: debatersChat">Chat of
+			Speakers</div>
+		<div th:insert="fragments/debateSpectatorsChat :: spectatorsChat">Chat
+			of Spectators</div>
+
 	</div>
-	
+
 </body>
 </html>

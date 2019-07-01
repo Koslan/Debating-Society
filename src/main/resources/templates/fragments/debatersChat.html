@@ -29,102 +29,118 @@
 <body>
 
 	<div style="height: 900px" th:fragment="debatersChat">
-	
+
 		<div class="container main-field">
-		
+
 			<div class="resistance">
 
 				<div class="container opponents">
-			
+
 					<div class="opponent">
-				
-						<div class="opponent-image">
-							<a href="#">
-								<img src="/images/vanomas.jpg" class="img-thumbnail members" alt="Opponent">
+
+						<div class="opponent-image ml-4">
+							<a class="ml-4" href="#"> <img
+								th:src="${'../images/users/' + firstSideUser.userImage}"
+								class="rounded-circle " alt="Opponent" width="60" height="60">
 							</a>
 						</div>
 
-						<p class="member-name h5">Вася</p>
-						<p class="side h3">Java</p>
+						<p class="member-name h5">
+							<span th:text="${firstSideUser.login}"> </span>
+						</p>
+						<p class="side h3">
+							<span th:text="${theme.firstPosition}">
+						</p>
+
+					</div>
+
+					<p class="h1">VS</p>
+
+					<div class="opponent">
+
+						<a href="#"> <img
+							th:src="${'../images/users/' + secondSideUser.userImage}"
+							class="rounded-circle " alt="Opponent" width="60" height="60">
+						</a>
+
+						<p class="member-name h5">
+							<span th:text="${secondSideUser.login}">
+						</p>
+						<p class="side h3">
+							<span th:text="${theme.secondPosition}">
+						</p>
+
+					</div>
 
 				</div>
 
-				<p class="h1">VS</p>
-
-				<div class="opponent">
-				
-					<a href="#">
-						<img src="/images/slidone.jpg" class="img-thumbnail members" alt="Opponent">
-					</a>
-
-					<p class="member-name h5">Петя</p>
-					<p class="side h3">C++</p>
-
-				</div>
-
-			</div>
-
-			<div class="table-of-votes">
+				<div class="table-of-votes">
 
 					<div class="index for-first h3">45</div>
 					<div class="index for-second h3">23</div>
-				
-			</div>
 
-		</div>
-
-		<div class="container chat-field for-members clearfix">
-			
-			<div class="clearfix">
-
-				<div class="message of-debaters of-opponent rounded">
-					<p class="argument h6">Я считаю, что ты не прав, так как...</p>
-					<p class="create-date">13:07</p>
 				</div>
 
 			</div>
 
-			<div class="clearfix">
+			<div class="container chat-field for-members clearfix">
 
-				<div class="message of-debaters of-mine-as-member rounded">
-					<p class="argument h6">На самом деле...</p>
-					<p class="create-date">13:08</p>
+				<div class="clearfix">
+
+					<div class="message of-debaters of-opponent rounded">
+						<p class="argument h6">Я считаю, что ты не прав, так как...</p>
+						<p class="create-date">13:07</p>
+					</div>
+
 				</div>
-				
+
+				<div class="clearfix">
+
+					<div class="message of-debaters of-mine-as-member rounded">
+						<p class="argument h6">На самом деле...</p>
+						<p class="create-date">13:08</p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="container argument-label">
+				<input type="text" id="member-message" class="my-argument"
+					placeholder="Напишите свой тезис...">
+				<button id="surrender" class="rounded h3" data-toggle="modal"
+					data-target="#exampleModal">Сдасться</button>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Вы признаете
+								поражение?</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">Вы потеряете часть заработанных
+							очков Репутации, однако сможете скомпенсировать реальную цену
+							проигрыша.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Я продолжаю дебаты</button>
+							<button type="submit" th:action="@{/debatersChat}"
+								th:object="${lobby}" id="confirm-surrender"
+								class="btn btn-primary" data-dismiss="modal">Я сдаюсь</button>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
 
-		<div class="container argument-label">
-			<input type="text" id="member-message" class="my-argument" placeholder="Напишите свой тезис...">
-			<button id="surrender" class="rounded h3" data-toggle="modal" data-target="#exampleModal">
-				Сдасться
-			</button>
-		</div>
-
-		<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Вы признаете поражение?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Вы потеряете часть заработанных очков Репутации, однако сможете скомпенсировать реальную цену проигрыша.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я продолжаю дебаты</button>
-        <button type="submit" th:action="@{/debatersChat}" th:object="${lobby}" id="confirm-surrender" class="btn btn-primary" data-dismiss="modal">Я сдаюсь</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-	</div>
-	
 	</div>
 
 </body>

@@ -145,22 +145,29 @@ public class LobbyController {
 			if (lobby.getActive() && lobby.getTheme().getId().equals(themesId)) {
 				System.out.println("one" + lobby.toString());
 				if (lobby.getTheme().getFirstPosition().equalsIgnoreCase(position)) {
-					if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
+					// if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
+					if (lobby.getSecondSide().size() > 0) {
 						side = 1;
 						loginOponent = lobby.getSecondSide();
+
+						lobby.getFirstSide().add(userRepository.getOne(getAuthUserId()));
+						lobbyRepository.saveAndFlush(lobby);
 						lobbies.add(lobby);
-						;
 						break;
 					}
-				}
+				} else {
 
-				if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
+					// if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
+					// if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
 					System.out.println("two" + lobby.toString());
-					if (lobby.getSecondSide().size() == 0 && lobby.getFirstSide().size() > 0) {
+					if (lobby.getFirstSide().size() > 0) {
 						side = 2;
 						loginOponent = lobby.getFirstSide();
-						lobbies.add(lobby);
+
+						lobby.getSecondSide().add(userRepository.getOne(getAuthUserId()));
 						System.out.println("two" + lobby.toString());
+						lobbies.add(lobby);
+						lobbyRepository.saveAndFlush(lobby);
 						break;
 					}
 				}
@@ -194,8 +201,15 @@ public class LobbyController {
 		return "timer";
 	}
 
-	@GetMapping("/debateLobby")
-	public String getDebateChat(Model model) {
+	@GetMapping("/debateLobby/{debateId}")
+	public String getDebateChat(Model model, @PathVariable int debateId) {
+		Lobby lobby = lobbyRepository.findById(debateId).get();
+		User user = lobby.getFirstSide().get(0);
+		User user1 = lobby.getSecondSide().get(0);
+		model.addAttribute("firstSideUser", user);
+		model.addAttribute("secondSideUser", user1);
+		model.addAttribute("debate", lobby);
+		model.addAttribute("theme", lobby.getTheme());
 		model.addAttribute("contentPage", "debateLobby");
 		getHeader(model);
 		return "index";
