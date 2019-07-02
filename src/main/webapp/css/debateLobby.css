@@ -104,15 +104,21 @@ img {
 	
 }
 
-.for-first {
+#firstPosition {
 
 	background-color: #ef5953;
+	text-align:center;
+	width: 100px;
+	height: 30px;
 
 }
 
-.for-second {
+#secondPosition {
 
 	background-color: #6eb3e5;
+	text-align:center;
+	width: 100px;
+	height: 30px;
 
 }
 
