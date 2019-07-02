@@ -58,7 +58,7 @@
 				<td th:if="${!lobby.config.isCensorship}">выключена</td>
 				<td>200 in developing</td>
 				<!-- <td th:text="${lobby.config.isSpectatorChatVisible}">in developing</td> -->
-				<td><a class="nav-link" href="/debateLobby">Стать зрителем</a></td>
+				<td><a class="nav-link" th:href="'/debateLobby/' + ${lobby.id}">Стать зрителем</a></td>
 			</tr>
 		</tbody>
 	</table>
