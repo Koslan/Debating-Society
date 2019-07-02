@@ -145,8 +145,8 @@ public class LobbyController {
 			if (lobby.getActive() && lobby.getTheme().getId().equals(themesId)) {
 				System.out.println("one" + lobby.toString());
 				if (lobby.getTheme().getFirstPosition().equalsIgnoreCase(position)) {
-					// if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
-					if (lobby.getSecondSide().size() > 0) {
+					if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
+						// if (lobby.getSecondSide().size() > 0) {
 						side = 1;
 						loginOponent = lobby.getSecondSide();
 
@@ -155,9 +155,9 @@ public class LobbyController {
 						lobbies.add(lobby);
 						break;
 					}
-				} else {
-
-					// if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
+				}  
+				
+				if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
 					// if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
 					System.out.println("two" + lobby.toString());
 					if (lobby.getFirstSide().size() > 0) {
