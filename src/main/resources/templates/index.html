@@ -183,6 +183,32 @@
 		$(".argument-label").append(leave_lobby);
 
 	});
+		
+		var isClicked = true;
+		
+		$('#firstPosition').click(function() {
+			if(isClicked == true){
+			$('#firstPosition').html(function(i, val) {
+				return val * 1 + 1
+				
+			});
+			isClicked = false;
+			}	
+			$("#voteForFirst").detach();
+		});
+		
+	
+		
+		
+		$('#secondPosition').click(function() {
+			if(isClicked == true){
+			$('#secondPosition').html(function(i, val) {
+				return val * 1 + 1
+			});
+			isClicked = false;
+			}	
+		});
+		
 
 	</script>
 	

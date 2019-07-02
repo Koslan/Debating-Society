@@ -38,6 +38,7 @@
 				<th scope="col">Видимость зрительского чата</th>
 				<th scope="col">Цензура</th>
 				<th scope="col">Количество баллов за победу</th>
+				<th scope="col">Переход на лобби</th>
 			</tr>
 		</thead>
 
@@ -57,6 +58,7 @@
 				<td th:if="${!lobby.config.isCensorship}">выключена</td>
 				<td>200 in developing</td>
 				<!-- <td th:text="${lobby.config.isSpectatorChatVisible}">in developing</td> -->
+				<td><a class="nav-link" href="/debateLobby">Стать зрителем</a></td>
 			</tr>
 		</tbody>
 	</table>
