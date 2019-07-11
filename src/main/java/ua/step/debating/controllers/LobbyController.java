@@ -67,7 +67,7 @@ public class LobbyController {
 		getHeader(model);
 		return "lobbies";
 	}
-	
+
 	/**
 	 * @author Vitaliy
 	 * @param model
@@ -84,8 +84,8 @@ public class LobbyController {
 				lobbiesByTheme.add(lobby);
 			}
 		}
-		model.addAttribute("lobbies", lobbiesByTheme); 
-		model.addAttribute("themes", themeRepository.getOne(themesId)); 
+		model.addAttribute("lobbies", lobbiesByTheme);
+		model.addAttribute("themes", themeRepository.getOne(themesId));
 		model.addAttribute("contentPage", "lobbies");
 		getHeader(model);
 		return "index";
@@ -128,6 +128,29 @@ public class LobbyController {
 	}
 
 	/**
+	 * @author Константин
+	 */
+	@GetMapping("/configureDebate/{id}")
+	private String configureDebate(@PathVariable("id") Integer id, Model model) {
+		Lobby lobby = lobbyRepository.getOne(id);
+		model.addAttribute("contentPage", "configureDebate");
+		model.addAttribute("configuration", lobby.getConfig());
+		model.addAttribute("subsphere", lobby.getTheme().getSphere().getName());
+		model.addAttribute("sphere", lobby.getTheme().getSphere().getParent().getName());
+		model.addAttribute("lobby", lobby);
+		model.addAttribute("theme", lobby.getTheme().getName());
+		getHeader(model);
+		return "index";
+	}
+
+	@PostMapping("/configureDebate/{id}")
+	private String configureDebateSubmit(@PathVariable("id") Integer id, @ModelAttribute("Lobby") Lobby lobby,
+			@ModelAttribute("Configuration") Configuration configuration) {
+		configurationRepository.saveAndFlush(configuration);
+		return "redirect:/configureDebate/" + id;
+	}
+
+	/**
 	 * @author Vitaliy
 	 * @param model
 	 * @param themesId
@@ -143,10 +166,8 @@ public class LobbyController {
 
 		for (Lobby lobby : lobbiesRepository) {
 			if (lobby.getActive() && lobby.getTheme().getId().equals(themesId)) {
-				System.out.println("one" + lobby.toString());
 				if (lobby.getTheme().getFirstPosition().equalsIgnoreCase(position)) {
 					if (lobby.getFirstSide().size() == 0 && lobby.getSecondSide().size() > 0) {
-						// if (lobby.getSecondSide().size() > 0) {
 						side = 1;
 						loginOponent = lobby.getSecondSide();
 
@@ -155,11 +176,9 @@ public class LobbyController {
 						lobbies.add(lobby);
 						break;
 					}
-				}  
-				
+				}
+
 				if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
-					// if (lobby.getTheme().getSecondPosition().equalsIgnoreCase(position)) {
-					System.out.println("two" + lobby.toString());
 					if (lobby.getFirstSide().size() > 0) {
 						side = 2;
 						loginOponent = lobby.getFirstSide();
@@ -204,10 +223,10 @@ public class LobbyController {
 	@GetMapping("/debateLobby/{debateId}")
 	public String getDebateChat(Model model, @PathVariable int debateId) {
 		Lobby lobby = lobbyRepository.findById(debateId).get();
-		User user = lobby.getFirstSide().get(0);
-		User user1 = lobby.getSecondSide().get(0);
-		model.addAttribute("firstSideUser", user);
-		model.addAttribute("secondSideUser", user1);
+		User firstSideUser = lobby.getFirstSide().get(0);
+		User secondSideUser = lobby.getSecondSide().get(0);
+		model.addAttribute("firstSideUser", firstSideUser);
+		model.addAttribute("secondSideUser", secondSideUser);
 		model.addAttribute("debate", lobby);
 		model.addAttribute("theme", lobby.getTheme());
 		model.addAttribute("contentPage", "debateLobby");

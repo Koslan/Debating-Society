@@ -21,8 +21,8 @@ public class Configuration {
 	private Integer generalTime; // время дискуссии/дебатов
 	private Integer timeoutTime;
 	private Integer timeoutFine; // штраф за истечение таймаута
-	private Boolean isCensorship;
-	private Boolean isSpectatorChatVisible;
+	private Boolean isCensorship = false;
+	private Boolean isSpectatorChatVisible = false;
 	@OneToMany
 	private List<User> orderOfDescants;
 
@@ -84,7 +84,7 @@ public class Configuration {
 
 	public void setTalkType(TalkType debate) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public TalkType getTalkType() {

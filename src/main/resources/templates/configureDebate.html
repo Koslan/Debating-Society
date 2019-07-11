@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+<meta charset="UTF-8">
+<title>Конфигурировать дебаты</title>
+</head>
+<body>
+	<div class="container" th:fragment="content">
+		<div class="text-center" th:with="sphereId=${spheresId}">
+			<h1>Текущая конфигурация</h1>
+			<h6 class="text-center">
+				Сфера дебатов - <span class="text-center" th:text="${sphere}"></span>
+			</h6>
+			<h6 class="text-center">
+				Подсфера дебатов - <span class="text-center" th:text="${subsphere}"></span>
+			</h6>
+			<h6 class="text-center">
+				Тема дебатов - <span class="text-center" th:text="${theme}"></span>
+			</h6>
+			<h6 class="text-center">
+				Название дебатов - <span class="text-center" th:text="${lobby.name}"></span>
+			</h6>
+
+			<h6 class="text-center">
+				Общее время дебатов (минут) - <span class="text-center"
+					th:text="${configuration.generalTime}"></span>
+			</h6>
+
+			<h6 class="text-center">
+				Время на написание аргумента (минут) - <span class="text-center"
+					th:text="${configuration.timeoutTime}"></span>
+			</h6>
+
+			<h6 class="text-center">
+				Штраф - <span class="text-center"
+					th:text="${configuration.timeoutFine}"></span>
+			</h6>
+
+			<h6 class="text-center">
+				Видимость зрительского чата - <span
+					th:if="${configuration.isSpectatorChatVisible}" class="text-center">
+					включена</span> <span th:if="${!configuration.isSpectatorChatVisible}"
+					class="text-center"> выключена</span>
+			</h6>
+
+			<h6 class="text-center">
+				Цензура - <span th:if="${configuration.isCensorship}"
+					class="text-center"> включена</span> <span
+					th:if="${!configuration.isCensorship}" class="text-center">
+					выключена</span>
+			</h6>
+
+
+
+
+
+
+			<h1>Конфигурировать дебаты</h1>
+		</div>
+		<form class="mt-3" th:action="@{/configureDebate/ + 1}"
+			th:object="${lobby}" method="post">
+
+
+
+			<div class="form-group">
+				<label for="name">Длительность дебатов (в минутах)</label> <input
+					type="range" name="generalTime" id="generalTime" min="5" step="5"
+					max="360" value="40"
+					oninput="generalTimeOutput.value = generalTime.value" />
+				<output name="generalTimeOutput" id="generalTimeOutput">40</output>
+			</div>
+			<div class="form-group">
+				<label for="name">Таймаут (в минутах)</label> <input type="range"
+					name="timeoutTime" id="timeoutTime" min="1" step="1" max="30"
+					value="2" oninput="timeoutTimeOutput.value = timeoutTime.value" />
+				<output name="timeoutTimeOutput" id="timeoutTimeOutput">2</output>
+			</div>
+			<div class="form-group">
+				<label for="name" data-toggle="tooltip"
+					title="Штраф за несвоеременное предоставление аргумента">Штраф</label>
+				<input type="range" name="timeoutFine" id="timeoutFine" min="0"
+					max="100" step="1" value="0"
+					oninput="timeoutFineOutput.value = timeoutFine.value" />
+				<output name="timeoutFineOutput" id="timeoutFineOutput">0</output>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label" data-toggle="tooltip"
+					title="Возможно ли использовать нецензурную лексику"> <input
+					type="checkbox" class="form-check-input" id="isCensorship"
+					name="isCensorship">Цензура
+				</label>
+			</div>
+			<br>
+			<div class="form-check">
+				<label class="form-check-label" data-toggle="tooltip"
+					title="Видят ли спикеры зрительский чат"> <input
+					type="checkbox" class="form-check-input"
+					id="isSpectatorChatVisible" name="isSpectatorChatVisible">Видимость
+					зрительского чата
+				</label>
+			</div>
+
+
+			<br>
+			<div class="text-center">
+				<button type="submit"
+					class="form-group btn btn-outline-info btn-lg  btn-block">Сохранить</button>
+			</div>
+
+			<script type="text/javascript">
+				$('.selectpicker').selectpicker();
+			</script>
+		</form>
+	</div>
+</body>
+</html>
+
