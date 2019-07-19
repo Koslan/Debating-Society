@@ -83,7 +83,7 @@ public class Configuration {
 	}
 
 	public void setTalkType(TalkType debate) {
-		// TODO Auto-generated method stub
+		talkType = debate;
 
 	}
 

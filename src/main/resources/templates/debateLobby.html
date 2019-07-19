@@ -25,6 +25,10 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 </head>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
 <body>
 	<div class="speach-zone" style="height: 900px" th:fragment="content">
@@ -34,7 +38,8 @@
 			Speakers</div>
 		<div th:insert="fragments/debateSpectatorsChat :: spectatorsChat">Chat
 			of Spectators</div>
-
+<!-- <div th:insert="fragments/testChat2 :: spectatorsChat">Chat
+			of Spectators</div> -->
 	</div>
 
 </body>

@@ -10,7 +10,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import ua.step.debating.models.Sphere;
 import ua.step.debating.models.Theme;
@@ -28,18 +30,18 @@ import ua.step.debating.repositories.UserRepository;
 @Controller
 public class SphereController {
 	@Autowired
-	private SphereRepository repoS;
+	private SphereRepository sphereRepository;
 
 	@Autowired
-	private ThemeRepository repoT;
-	
+	private ThemeRepository themeRepository;
+
 	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping("/spheres")
 	public String getSpheres(Model model) {
 		getHeader(model);
-		model.addAttribute("spheres", repoS.findAll());
+		model.addAttribute("spheres", sphereRepository.findAll());
 		model.addAttribute("contentPage", "spheres");
 		return "index";
 	}
@@ -47,8 +49,8 @@ public class SphereController {
 	@GetMapping("/spheres/{spheresId}")
 	public String getThemes(Model model, @PathVariable int spheresId) {
 		if (spheresId > 99) {
-			List<Theme> themes = repoT.findAll();
-			List<Sphere> spheres = repoS.findAll();
+			List<Theme> themes = themeRepository.findAll();
+			List<Sphere> spheres = sphereRepository.findAll();
 			List<Theme> chooseThemes = new ArrayList<Theme>();
 			List<Theme> themesTempary = new ArrayList<Theme>();
 
@@ -58,27 +60,26 @@ public class SphereController {
 					System.out.println(themesTempary.size());
 				}
 			}
-			model.addAttribute("themes", repoT.findAll());
-			model.addAttribute("spheres", repoS.findAll());
+			model.addAttribute("themes", themeRepository.findAll());
+			model.addAttribute("spheres", sphereRepository.findAll());
 			model.addAttribute("spheresId", spheresId);
 			model.addAttribute("themesTempary", themesTempary);
 			model.addAttribute("contentPage", "subthemes");
 		}
 
 		else {
-			model.addAttribute("spheres", repoS.findAll());
+			model.addAttribute("spheres", sphereRepository.findAll());
 			model.addAttribute("spheresId", spheresId);
 			model.addAttribute("contentPage", "subspheres");
 		}
 		getHeader(model);
 		return "index";
 	}
-	
-	
+
 	@GetMapping(value = "/spheres/{spheresId}", params = { "search" })
 	private String getSearchTheme(Model model, String search) {
 		int count = 0;
-		List<Theme> themeList = repoT.findAll();
+		List<Theme> themeList = themeRepository.findAll();
 		List<Theme> searchList = null;
 		if (!search.isEmpty() && count == 0) {
 			searchList = new ArrayList<Theme>();
@@ -99,7 +100,37 @@ public class SphereController {
 		getHeader(model);
 		return "index";
 	}
-	
+
+	@GetMapping("/createSphere")
+	private String getAddTheme(Model model) {
+		getHeader(model);
+		model.addAttribute("spheres", sphereRepository.findAll());
+		model.addAttribute("sphereName", "нет имени");
+		model.addAttribute("contentPage", "createSphere");
+		return "index";
+	}
+
+	/**
+	 * Create new sphere
+	 */
+	@PostMapping("/createSphere")
+	private String createTheme(@ModelAttribute("sphere") Sphere sphere,
+			@ModelAttribute("sphereName") String sphereName) {
+		Sphere subSphere = new Sphere();
+		if (sphere == null) {
+			subSphere.setId(getEmptySphereId());
+		} else {
+			subSphere.setParent(sphere);
+		}
+		subSphere.setName(sphereName);
+
+		System.out.println("!!!!!!!!!!!!!!" + subSphere.getName());
+		System.out.println("!!!sssss!!!!!!" + getEmptySphereId());
+
+		sphereRepository.saveAndFlush(subSphere);
+		return "redirect:/spheres";
+	}
+
 	private Integer getAuthUserId(UserRepository repo) {
 		Integer id = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -124,6 +155,15 @@ public class SphereController {
 			model.addAttribute("activity", 0);
 		}
 	}
-	
-	
+
+	private Integer getEmptySphereId() {
+
+		for (int i = 1; i < 100; i++) {
+			if (!sphereRepository.existsById(i)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 }

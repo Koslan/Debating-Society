@@ -31,8 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**", "/debatersChat", "/themes", "/inDeveloping", "/index", "/header", "/timer",
 						"/spheres", "/subspheres", "/registration", "/login", "/h2-console/**", "registration")
 				.permitAll()
+				.antMatchers("/createSphere").hasAuthority("ROLE_admin")
 				.antMatchers("/debateLobby/**", "/autoConnect", "/debateAutoConnect/**", "/themes/createTheme",
-						"/themes/theSamePositionError")
+						"/themes/theSamePositionError", "/configureDebate/**")
 				.hasAuthority("ROLE_user").anyRequest().fullyAuthenticated().and().exceptionHandling()
 				.accessDeniedPage("/login").and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
 				.and().logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/login")
