@@ -36,7 +36,11 @@
 		<nav class="navbar navbar-expand-sm rounded border shadow-sm"
 			th:fragment="header(search)">
 			<a class="navbar-brand" href="/"><img
-				th:src="@{'/images/debating/logo-2.jpg'}" width="60"> </a>
+				th:src="@{'~/images/debating/logo-2.jpg'}" width="60"> </a>
+				<a class="navbar-brand" href="/"> </a>
+<!-- 			<a class="navbar-brand" href="/"><img
+				th:src="@{'/resources/images/debating/logo-2.jpg'}" width="60"> </a>
+				<a class="navbar-brand" href="/"> </a> -->
 
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item"><a class="nav-link" href="/inDeveloping">Лента</a></li>
@@ -59,15 +63,25 @@
 				<div class="btn-group rounded-circle mt-3 mr-3 dropdown">
 					<a href="#" id="imageDropdown" data-toggle="collapse"
 						data-target="#navbar"> <img class="rounded-circle"
-						th:src="@{${'../images/users/' + image}}" alt="Person" width="60"
+						th:src="@{${'~/images/users/' + image}}" alt="Person" width="60"
 						height="60"> <!-- src="/images/users/1.jpg" alt="Person" width="60" height="60"> -->
 					</a>
+					<!-- Раскомментировать и использовать для AWS -->
+					<!-- <a href="#" id="imageDropdown" data-toggle="collapse"
+						data-target="#navbar"> <img class="rounded-circle"
+						th:src="@{${'~/resources/images/users/' + image}}" alt="Person" width="60"
+						height="60"> src="/images/users/1.jpg" alt="Person" width="60" height="60">
+					</a> -->
 					<!-- Выпадающее меню -->
 
 					<div id="navbar" class="dropdown-menu dropdown-menu-right ">
 						<a class="dropdown-item" href="#"> <img class="rounded-circle"
 							th:src="@{${'~/images/users/' + image}}" alt="Person" width="60"
 							height="60">
+							<!-- Раскомментировать и использовать для AWS -->
+<!-- 						<a class="dropdown-item" href="#"> <img class="rounded-circle"
+							th:src="@{${'~/resources/images/users/' + image}}" alt="Person" width="60"
+							height="60"> -->
 						</a> <span class="dropdown-item-text" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
 
 						<p class="card-text">

@@ -63,6 +63,32 @@
 								th:src="@{${'~/images/'+theme.backgroundImage}}" alt="Картинка"
 								class="img-thumbnail ml-3">
 						</div>
+						<!-- Раскомментировать и использовать для AWS -->
+						<!-- <div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'/resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'~/resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'../resources/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'..resources/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div> -->
 					</div>
 
 					<!-- Круглая иконка загрузки -->
@@ -104,12 +130,12 @@
 						</h6>
 
 						<h6 class="text-center">
-							Время на написание аргумента (минут) - <span class="text-center"
+							Время на написание сообщение (минут) - <span class="text-center"
 								th:text="${configuration.timeoutTime}"></span>
 						</h6>
 
 						<h6 class="text-center">
-							Штраф - <span class="text-center"
+							Штраф за несвоеременное предоставление аргумента - <span class="text-center"
 								th:text="${configuration.timeoutFine}"></span>
 						</h6>
 

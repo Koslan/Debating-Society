@@ -41,9 +41,14 @@
 			<div class="card" th:each="themes : ${themes}">
 
 				<div class="text-center">
-					<img th:src="@{${'../images/'+themes.backgroundImage}}"
+					<img th:src="@{${'~/images/'+themes.backgroundImage}}"
 						alt="Картинка" class="img-thumbnail">
 				</div>
+				<!-- Раскомментировать и использовать для AWS -->
+				<!-- <div class="text-center">
+					<img th:src="@{${'~/resources/images/'+themes.backgroundImage}}"
+						alt="Картинка" class="img-thumbnail">
+				</div> -->
 
 				<div class="card-body">
 					<div class="text-center">

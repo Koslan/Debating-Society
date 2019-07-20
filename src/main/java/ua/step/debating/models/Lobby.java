@@ -1,5 +1,6 @@
 package ua.step.debating.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +26,23 @@ public class Lobby {
 	@OneToOne
 	private Theme theme;
 	
-	private Date createDate;
+	private LocalDateTime createDate;
 
-	private Date startDate;
+	//private Date startDate;
+	//время не поиск аппонента
+	private LocalDateTime dateOfDebate;
+
+	private LocalDateTime timeToStartDebate;
+	private LocalDateTime timeToFinishDebate;
+
+	private Boolean timeToAnswer1;
+	private Boolean timeToAnswer2;
+
+	private Boolean debateStart;
+	private Boolean debateGoing;
+	private Boolean debateFinish;
+
+	private Boolean isOpponentsfound;
 	
 	@ManyToMany
 	private List<User> firstSide = new ArrayList<User>();
@@ -44,6 +59,7 @@ public class Lobby {
 	
 	@OneToOne
 	private Configuration config;
+	
 	private Boolean active;
 	
 	@ManyToMany
@@ -73,11 +89,11 @@ public class Lobby {
 		this.theme = theme;
 	}
 
-	public Date getCreateDate() {
+	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 
@@ -145,14 +161,78 @@ public class Lobby {
 		this.winners = winners;
 	}
 	
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+public LocalDateTime getDateOfDebate() {
+	return dateOfDebate;
 }
 
+public void setDateOfDebate(LocalDateTime dateOfDebate) {
+	this.dateOfDebate = dateOfDebate;
+}
+
+public Boolean getTimeToAnswer1() {
+	return timeToAnswer1;
+}
+
+public void setTimeToAnswer1(Boolean timeToAnswer1) {
+	this.timeToAnswer1 = timeToAnswer1;
+}
+
+public Boolean getTimeToAnswer2() {
+	return timeToAnswer2;
+}
+
+public void setTimeToAnswer2(Boolean timeToAnswer2) {
+	this.timeToAnswer2 = timeToAnswer2;
+}
+
+public Boolean getDebateStart() {
+	return debateStart;
+}
+
+public void setDebateStart(Boolean debateStart) {
+	this.debateStart = debateStart;
+}
+
+public Boolean getDebateGoing() {
+	return debateGoing;
+}
+
+public void setDebateGoing(Boolean debateGoing) {
+	this.debateGoing = debateGoing;
+}
+
+public Boolean getDebateFinish() {
+	return debateFinish;
+}
+
+public void setDebateFinish(Boolean debateFinish) {
+	this.debateFinish = debateFinish;
+}
+
+public Boolean getIsOpponentsfound() {
+	return isOpponentsfound;
+}
+
+public void setIsOpponentsfound(Boolean isOpponentsfound) {
+	this.isOpponentsfound = isOpponentsfound;
+}
+
+public LocalDateTime getTimeToFinishDebate() {
+	return timeToFinishDebate;
+}
+
+public void setTimeToFinishDebate(LocalDateTime timeToFinishDebate) {
+	this.timeToFinishDebate = timeToFinishDebate;
+}
+
+public LocalDateTime getTimeToStartDebate() {
+	return timeToStartDebate;
+}
+
+public void setTimeToStartDebate(LocalDateTime timeToStartDebate) {
+	this.timeToStartDebate = timeToStartDebate;
+}
+
+}
 
 

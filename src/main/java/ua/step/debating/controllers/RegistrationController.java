@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ua.step.debating.models.LobbyStatistics;
 import ua.step.debating.models.Role;
@@ -30,6 +34,35 @@ public class RegistrationController {
 	@Autowired
 	private UserStatisticsRepository userStatisticsRepository;
 
+	private static final int WEAK_STRENGTH = 1;
+	private static final int MIDLE_STRENGTH = 5;
+	private static final int STRONG_STRENGTH = 7;
+	
+	private static final String WEAK_COLOR = "#FF0000";
+	private static final String MIDLE_COLOR = "#FF9900";
+	private static final String STRONG_COLOR = "#0099CC";
+	
+	/**
+	 * Данный метод проверяе длину password
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
+	public @ResponseBody
+	String checkStrength(@RequestParam String password) {
+		String result = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
+
+		if (password.length() >= WEAK_STRENGTH & password.length() < MIDLE_STRENGTH) {
+			// добавить локализацию
+			return String.format(result, WEAK_COLOR, "Слабый");
+		} else if (password.length() >= MIDLE_STRENGTH & password.length() < STRONG_STRENGTH) {
+			return String.format(result, MIDLE_COLOR, "Средний");
+		} else if (password.length() >= STRONG_STRENGTH) {
+			return String.format(result, STRONG_COLOR, "Сильный");
+		}
+		return "";
+	}
+	
 	@GetMapping(value = "/registration")
 	public String getRegistrationPage() {
 		return "registration";

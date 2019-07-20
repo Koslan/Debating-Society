@@ -1,9 +1,14 @@
 package ua.step.debating.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -60,6 +65,8 @@ public class LobbyController {
 
 	@Autowired
 	private UserStatisticsRepository userStatisticsRepository;
+	
+	String toTimerTwo = null;
 
 	@GetMapping("/lobbies")
 	public String getLobbies(Model model) {
@@ -106,7 +113,7 @@ public class LobbyController {
 			@ModelAttribute("spheresId") String sphereId, @ModelAttribute("subSphereId") String subSphereId,
 			@ModelAttribute("User") User user, @ModelAttribute("userPosition") String userPosition) {
 
-		lobby.setCreateDate(Calendar.getInstance().getTime());
+		lobby.setCreateDate(LocalDateTime.now());
 		lobby.setActive(true);
 		lobby.setName(theme.getName() + " /n Пользователь1" + " vs " + "Пользователь2");
 
@@ -232,6 +239,162 @@ public class LobbyController {
 		model.addAttribute("contentPage", "debateLobby");
 		getHeader(model);
 		return "index";
+	}
+	
+	/**
+	 * @author Vitaliy
+	 * @param model
+	 * @param themesId
+	 * @return Данный метод используется для работы лобби
+	 * 
+	 */
+	/*@GetMapping("/debateLobby/{debateId}")
+	public String getDebateChat(Model model, @PathVariable int debateId) throws InterruptedException {
+		 String dateOfDebate = "Jul 10, 2019 20:43:25"; 
+		// String toTimerOne = "Jul 10, 2019 20:43:25";
+		String toTimerOne = null;
+		//String toTimerTwo = null;
+
+		Boolean debateStart = false;
+		Boolean debateGoing = false;
+		Boolean debateFinish = false;
+
+		Boolean isFirst = false;
+		
+		Boolean timeIsComplete = true;
+		
+		Integer pointFirstSide = 3;
+		Integer pointSecondSide = 3;
+
+		//long timeOut;
+
+		// String endDate = null;
+
+		Lobby lobby = lobbyRepository.findById(debateId).get();
+		User user = lobby.getFirstSide().get(0);
+		User user1 = lobby.getSecondSide().get(0);
+		// данное lobby активное, пока не истечет дата или не присоедениться опонент
+		LocalDateTime dateOfDebate = lobby.getDateOfDebate();
+		// дата начала дебат
+		LocalDateTime timeToStartDebate = lobby.getTimeToStartDebate();
+		// дата завершения дебат
+		LocalDateTime timeToFinishDebate = lobby.getTimeToFinishDebate();
+
+		// timeOut = lobby.getConfig().getTimeoutTime();
+
+		// текущее время
+		LocalDateTime todayDateTime = LocalDateTime.now();
+		
+		 * LocalDateTime localDateTime = LocalDateTime.of(2015, Month.JANUARY, 25, 6,
+		 * 30);
+		 
+		// System.out.println("текущее время " + LocalDateTime.now());
+
+		// форматирование времени
+		String todayDateTimeFormate = todayDateTime
+				.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.UK));
+		
+		 * System.out.println("форматирование времени " + todayDateTime
+		 * .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+		 * .withLocale(Locale.UK)));
+		 
+
+		//System.out.println("результат" + todayDateTimeFormate);
+
+		// передача даты в верхний таймер
+		// toTimerOne = todayDateTimeFormate;
+		toTimerOne = dateOfDebate
+				.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+				.withLocale(Locale.UK));
+		System.out.println("toTimerOne" + toTimerOne);
+		
+		
+		// колличество минут на одно сообщение
+		LocalDateTime timeToMessage = todayDateTime.plusMinutes(lobby.getConfig().getTimeoutTime());
+
+		// передача даты в нижний таймер
+		toTimerTwo = timeToMessage
+				.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+				.withLocale(Locale.UK));
+		System.out.println("toTimerTwo" + toTimerTwo);
+		
+		givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(timeToMessage, 5000L, 1000L);
+		System.out.println("toTimerTwo" + toTimerTwo);
+		
+		if(!toTimerTwo.equals(null)) {
+		
+		}
+		
+		//получаем разницу между двумя датами
+				long thirty = Duration.between(timeToMessage, todayDateTime).getSeconds();
+				System.out.println("Duration" + thirty);
+		long thirty=1;
+		while(true && thirty != 0 ){
+			Thread.sleep(1000);
+			todayDateTime = LocalDateTime.now();
+			thirty = Duration.between(timeToMessage, todayDateTime).getSeconds();
+			System.out.println("Duration" + thirty);
+			if (timeIsComplete) {
+				if (isFirst) {
+					pointFirstSide -= 1;
+					if (pointFirstSide == 0) {
+						debateGoing = false;
+						debateFinish = true;
+					}
+				}
+			} else {
+				pointSecondSide -= 1;
+				if (pointSecondSide == 0) {
+					debateGoing = false;
+					debateFinish = true;
+				}
+			}
+		}
+		
+			if(debateFinish) {
+		//добавить балл победителю
+		debatCount+=1;
+		//вычесть баллы у проигравщего
+		debatCount-=1;
+	}
+		// System.out.println(toTimerTwo);
+
+		model.addAttribute("toTimerOne", toTimerOne);
+		model.addAttribute("toTimerTwo", toTimerTwo);
+		model.addAttribute("debateFinish", debateFinish);
+		model.addAttribute("firstSideUser", user);
+		model.addAttribute("secondSideUser", user1);
+		model.addAttribute("debate", lobby);
+		model.addAttribute("theme", lobby.getTheme());
+		model.addAttribute("contentPage", "debateLobby");
+		getHeader(model);
+		return "index";
+	}*/
+	
+	private String startToTimerTwo(String date) {
+		return date;
+	}
+	
+	public void givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(LocalDateTime timeToMessage, long delay, long period){
+		//TimerTask - задача, которую нужно выполнить, а Timer - планировщик .
+		TimerTask repeatedTask = new TimerTask() {
+			public void run() {
+				//LocalDateTime todayDateTime = LocalDateTime.now();
+				String todayDateTimeFormate = timeToMessage
+						.format(DateTimeFormatter
+						.ofLocalizedDateTime(FormatStyle.MEDIUM)
+						.withLocale(Locale.UK));
+				
+				toTimerTwo = startToTimerTwo (todayDateTimeFormate);
+				//System.out.println("Task performed on " + timeToMessage);
+				//System.out.println("next" + startToTimerTwo(todayDateTimeFormate));
+			}
+		};
+		Timer timer = new Timer("Timer");
+		//scheduleAtFixedRate (repeatTask, delay, period) -
+		//который планирует задачу для повторного выполнения 
+		//с фиксированной скоростью, начиная с указанной задержки.
+		timer.scheduleAtFixedRate(repeatedTask, delay, period);
 	}
 
 	/**

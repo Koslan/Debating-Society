@@ -57,6 +57,20 @@
 			
 </div> -->
 
+			<input type="date" name="datepicker" id="date" /> datepicker
+			<input type="time" name="timepicker" id="time" /> timepicker
+			<input type="datetime" name="datetimepicker" /> <input
+				class="datetime hasDataTime" value="2008-08-23 10:45:00"
+				id="starttime" />
+			
+			<script type="text/javascript">
+				jQuery(function() {
+					jQuery('input.datetime').datetime({
+						userLang : 'ru'
+					});
+				});
+			</script>
+
 
 			<div class="form-group">
 				<label for="name">Тема</label> <select class="form-control"
