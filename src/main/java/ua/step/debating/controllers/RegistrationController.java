@@ -42,26 +42,7 @@ public class RegistrationController {
 	private static final String MIDLE_COLOR = "#FF9900";
 	private static final String STRONG_COLOR = "#0099CC";
 	
-	/**
-	 * Данный метод проверяе длину password
-	 * @param password
-	 * @return
-	 */
-	@RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
-	public @ResponseBody
-	String checkStrength(@RequestParam String password) {
-		String result = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
-
-		if (password.length() >= WEAK_STRENGTH & password.length() < MIDLE_STRENGTH) {
-			// добавить локализацию
-			return String.format(result, WEAK_COLOR, "Слабый");
-		} else if (password.length() >= MIDLE_STRENGTH & password.length() < STRONG_STRENGTH) {
-			return String.format(result, MIDLE_COLOR, "Средний");
-		} else if (password.length() >= STRONG_STRENGTH) {
-			return String.format(result, STRONG_COLOR, "Сильный");
-		}
-		return "";
-	}
+	
 	
 	@GetMapping(value = "/registration")
 	public String getRegistrationPage() {
