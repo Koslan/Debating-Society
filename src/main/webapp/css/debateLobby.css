@@ -109,8 +109,27 @@ img {
 	background-color: #ef5953;
 	text-align:center;
 	width: 100px;
-	height: 30px;
+	height: 42px;
+	font-size: 1.75rem;
 
+}
+
+#vote-exampleModalForVotesFirstPosition, #vote-exampleModalForVotesSecondPosition{
+	
+	background-color: #6eb3e5;
+	
+}
+
+.disFirstPosition, .disSecondPosition {
+	
+	background-color: #c7c2bf;
+	box-shadow: inset 0px 0px 0px 0px #000000;
+}
+
+#cancel{
+	
+	background-color: #ef5953;
+	
 }
 
 #secondPosition {
@@ -118,7 +137,8 @@ img {
 	background-color: #6eb3e5;
 	text-align:center;
 	width: 100px;
-	height: 30px;
+	height: 42px;
+	font-size: 1.75rem;
 
 }
 
@@ -247,7 +267,7 @@ img {
 
 }
 
-#surrender:hover, .leave:hover {
+#surrender:hover, .leave:hover, #secondPosition:hover, #firstPosition:hover {
 		
 	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
 

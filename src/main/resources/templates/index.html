@@ -184,28 +184,44 @@
 
 	});
 		
+		$('#firstPosition').tooltip({
+
+	    	title : 'Проголосовать за первую позицию',
+	    	delay: { show: 750, hide: 750},
+
+			});
+		
+		$('#secondPosition').tooltip({
+
+	    	title : 'Проголосовать за вторую позицию',
+	    	delay: { show: 750, hide: 750},
+
+			});
+		
 		var isClicked = true;
 		
-		$('#firstPosition').click(function() {
+		$('#vote-exampleModalForVotesFirstPosition').click(function() {
 			if(isClicked == true){
 			$('#firstPosition').html(function(i, val) {
 				return val * 1 + 1
 				
 			});
 			isClicked = false;
+			document.getElementById("firstPosition").disabled = true;
+			document.getElementById("secondPosition").disabled = true;
+			document.getElementById("firstPosition").className = 'disFirstPosition';
 			}	
-			$("#voteForFirst").detach();
 		});
 		
-	
-		
-		
-		$('#secondPosition').click(function() {
+		$('#vote-exampleModalForVotesSecondPosition').click(function() {
 			if(isClicked == true){
 			$('#secondPosition').html(function(i, val) {
 				return val * 1 + 1
 			});
 			isClicked = false;
+			document.getElementById("secondPosition").disabled = true;
+			document.getElementById("firstPosition").disabled = true; 
+			document.getElementById('secondPosition').classList.add= 'disSecondPosition';
 			}	
 		});
 		
